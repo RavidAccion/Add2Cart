@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,27 +6,30 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  @Input() name!: string;
+  @ViewChild('searchbar') searchbar!: ElementRef;
+  searchText = '';
 
-  isOpen = false;
-  isDropdownOpen = false;
+  toggleSearch: boolean = false;
   // constructor(private http: Http) { }
 
-  ngOnInit() {
-    this.getData();
-  }
+  constructor() {}
 
-  toggleNavbar() {
-    this.isOpen = !this.isOpen;
-  }
+  openSearch() {
+    // this.toggleSearch = true;
+    // this.toggleSearch != this.toggleSearch;
 
-  toggleDropDown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
+    // this.searchbar.nativeElement.focus();
+    debugger;
+    if (this.toggleSearch == true) {
+      this.toggleSearch = false;
+    } else if (this.toggleSearch == false) {
+      this.toggleSearch = true;
+    }
+    console.log(this.toggleSearch);
   }
-
-  getData() {
-    // this.http.get('https://jsonplaceholder.typicode.com/posts').map(res => res.json()).subscribe(res => {
-    //   console.log(res);
-    // });
+  searchClose() {
+    this.searchText = '';
+    this.toggleSearch = false;
+    console.log(this.toggleSearch);
   }
 }
