@@ -13,8 +13,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { HomepageComponent } from './homepage/homepage.component';
+import { ProductpageComponent } from './productpage/productpage.component';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HomepageComponent],
+  declarations: [AppComponent, HeaderComponent, HomepageComponent, ProductpageComponent],
   imports: [
     BrowserModule,
     MatMenuModule,

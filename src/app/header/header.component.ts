@@ -19,7 +19,7 @@ export class HeaderComponent {
     // this.toggleSearch != this.toggleSearch;
 
     // this.searchbar.nativeElement.focus();
-    debugger;
+
     if (this.toggleSearch == true) {
       this.toggleSearch = false;
     } else if (this.toggleSearch == false) {
