@@ -56,14 +56,15 @@ background-image: url(https://ionicframework.com/img/getting-started/theming-car
 // }
 .banner_bg_main {
   width: 100%;
-
   float: left;
   background-image: url(../../assets/images/banner-bg.png);
   height: auto;
   background-size: 100%;
   background-repeat: no-repeat;
 }
-
+.fade{
+  background-color: #dc0707;
+}
 
 
 .banner_taital {

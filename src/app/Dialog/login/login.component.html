@@ -1,0 +1,20 @@
+<section class="banner_bg_main" >
+<!-- <mat-dialog-content class="mat-typography"> -->
+  <form [formGroup]="login">
+<div class="form-group">
+    <mat-form-field floatLabel="never" class="form-element">
+      <input type="text" matInput placeholder="Username" formControlName="username">
+    </mat-form-field>
+    <mat-form-field floatLabel="never" class="form-element">
+      <input type="password" matInput placeholder="Password" formControlName="password">
+    </mat-form-field>
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button" >Submit Form</button>
+    </div>
+  </div>
+  </form>
+<!-- </mat-dialog-content> -->
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>skip Login</button>
+</mat-dialog-actions>
+</section>
