@@ -17,6 +17,12 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ProductpageComponent } from './productpage/productpage.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './Dialog/login/login.component';
+
+import { CarouselModule } from 'primeng/carousel';
+import { ButtonModule } from 'primeng/button';
+import { MatChipsModule } from '@angular/material/chips';
+
+import { CheckoutComponent } from './checkout/checkout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,12 +30,16 @@ import { LoginComponent } from './Dialog/login/login.component';
     HomepageComponent,
     ProductpageComponent,
     LoginComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
+    MatChipsModule,
     MatInputModule,
     MatMenuModule,
     MatIconModule,
+    CarouselModule,
+    ButtonModule,
     ReactiveFormsModule,
     AppRoutingModule,
     MatToolbarModule,

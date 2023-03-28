@@ -7,7 +7,10 @@
 padding: 14px 80px 18px 36px;
 cursor: pointer;
 }
+a {
 
+  text-decoration: none !important;
+}
 .card:hover{
    transform: scale(1.05);
 box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
@@ -58,6 +61,7 @@ background-image: url(https://ionicframework.com/img/getting-started/theming-car
   width: 100%;
   float: left;
   background-image: url(../../assets/images/banner-bg.png);
+  background-color: lightsteelblue;
   height: auto;
   background-size: 100%;
   background-repeat: no-repeat;
