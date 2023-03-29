@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../Dialog/login/login.component';
-
+import { ApiService } from '../api.service';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent {
+  categorylist: any;
   firstTime: any;
   options = { fullWidth: false };
   items = [
@@ -20,17 +21,32 @@ export class HomepageComponent {
   ];
 
   hrefs = ['one', 'two', 'three', 'four', 'five'];
-  constructor(private router: Router, public dialog: MatDialog) {}
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    private Api: ApiService
+  ) {}
 
   ngOnInit() {
     this.openDialog();
+    this.getCategory();
   }
 
   ngAfterViewInit() {
     // no errors
     let elems = document.querySelectorAll('.carousel');
   }
-  toProduct() {
+
+  getCategory() {
+    this.Api.getCategoryData().subscribe((res) => {
+      this.categorylist = res;
+      console.log(this.categorylist);
+    });
+  }
+
+  toProduct(id: any) {
+    console.log(id);
+    sessionStorage.setItem('ID', id.id);
     this.router.navigate(['/product']);
   }
 

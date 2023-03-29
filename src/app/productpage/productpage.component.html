@@ -35,7 +35,7 @@
   </header>
 
 
-  <article class="card card-product-list">
+  <article class="card card-product-list" *ngFor="let item of productlist ">
       <div class="row no-gutters">
           <aside class="col-md-3">
               <a href="#" class="img-wrap">
@@ -45,7 +45,7 @@
           </aside>
           <div class="col-md-6">
               <div class="info-main">
-                  <a href="#" class="h5 title"> Peter England Jean Trousers  </a>
+                  <a href="#" class="h5 title"> {{item.product_name}} </a>
                   <div class="rating-wrap mb-3">
                       <ul class="rating-stars">
                           <li style="width:80%" class="stars-active">
@@ -61,19 +61,20 @@
                       </ul>
                       <div class="label-rating">7/10</div>
                   </div>
-                  <p> Men Skinny Fit Green Cotton Blend Trousers</p>
+                  <p> {{item.product_description
+                  }}</p>
               </div>
           </div>
           <aside class="col-sm-3">
               <div class="info-aside">
                   <div class="price-wrap">
-                      <span class="price h5"> $140 </span>
-                      <del class="price-old"> $198</del>
+                      <span class="price h5">{{item.price}}</span>
+                      <!-- <del class="price-old"> $198</del> -->
                   </div>
                   <p class="text-success">Free shipping</p>
                   <br>
                   <p>
-                      <a href="#" class="btn btn-primary btn-block"> Details </a>
+                      <a  class="btn btn-primary btn-block" (click)="cartData(item)"> Add To cart </a>
                       <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i>
                           <span class="text">Add to wishlist</span>
                       </a>
@@ -84,143 +85,6 @@
   </article>
 
 
-  <article class="card card-product-list">
-      <div class="row no-gutters">
-          <aside class="col-md-3">
-              <a href="#" class="img-wrap"><img src="assets/images/items/4.jpg"></a>
-          </aside>
-          <div class="col-md-6">
-              <div class="info-main">
-                  <a href="#" class="h5 title"> Bags  </a>
-                  <div class="rating-wrap mb-3">
-                      <ul class="rating-stars">
-                          <li style="width:80%" class="stars-active">
-                              <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                          </li>
-                          <li>
-                              <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                          </li>
-                      </ul>
-                      <div class="label-rating">10/10</div>
-                  </div>
-
-                  <p> Blowzy
-                    Medium 25 L Backpack Luxury  (Blue) </p>
-              </div>
-          </div>
-          <aside class="col-sm-3">
-              <div class="info-aside">
-                  <div class="price-wrap">
-                      <span class="price h5"> $56 </span>
-                      <del class="price-old"> $85</del>
-                  </div>
-                  <p class="text-success">Free shipping</p>
-                  <br>
-                  <p>
-                      <a href="#" class="btn btn-primary btn-block"> Details </a>
-                      <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i>
-                          <span class="text">Add to wishlist</span></a>
-                  </p>
-              </div>
-          </aside>
-      </div>
-  </article>
-
-  <article class="card card-product-list">
-      <div class="row no-gutters">
-          <aside class="col-md-3">
-              <a href="#" class="img-wrap"><img src="assets/images/items/5.jpg"></a>
-          </aside>
-          <div class="col-md-6">
-              <div class="info-main">
-                  <a href="#" class="h5 title"> Apple MacBook  </a>
-                  <div class="rating-wrap mb-3">
-                      <ul class="rating-stars">
-                          <li style="width:80%" class="stars-active">
-                              <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                          </li>
-                          <li>
-                              <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                          </li>
-                      </ul>
-                      <div class="label-rating">7/10</div>
-                  </div>
-
-                  <p>APPLE 2020 Macbook Air M1 - (8 GB/256 GB SSD/Mac OS Big Sur) MGN93HN/A
-                    (13.3 inch, Silver, 1.29 kg)</p>
-              </div>
-          </div>
-          <aside class="col-sm-3">
-              <div class="info-aside">
-                  <div class="price-wrap">
-                      <span class="price h5"> $56.00 </span>
-                  </div>
-                  <p class="text-success">Free shipping</p>
-                  <br>
-                  <p>
-                      <a href="#" class="btn btn-primary btn-block"> Details </a>
-                      <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i>
-                          <span class="text">Add to wishlist</span>
-                      </a>
-                  </p>
-              </div>
-          </aside>
-      </div>
-  </article>
-
-  <article class="card card-product-list">
-      <div class="row no-gutters">
-          <aside class="col-md-3">
-              <a href="#" class="img-wrap"><img src="assets/images/items/6.jpg"></a>
-          </aside>
-          <div class="col-md-6">
-              <div class="info-main">
-                  <a href="#" class="h5 title"> Royal Oak Sofa  </a>
-                  <div class="rating-wrap mb-3">
-                      <ul class="rating-stars">
-                          <li style="width:80%" class="stars-active">
-                              <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                          </li>
-                          <li>
-                              <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                          </li>
-                      </ul>
-                      <div class="label-rating">7/10</div>
-                  </div>
-
-                  <p> Royal Oak Perfect Homes Burano  Fabric 6 Seater Sofa
-                     (Finish Color - Sky Blue, DIY(Do-It-Yourself))</p>
-              </div>
-          </div>
-          <aside class="col-sm-3">
-              <div class="info-aside">
-                  <div class="price-wrap">
-                      <span class="price h5"> $62 </span>
-                  </div>
-                  <p class="text-success">Free shipping</p>
-                  <br>
-                  <p>
-                      <a href="#" class="btn btn-primary btn-block"> Details </a>
-                      <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i>
-                          <span class="text">Add to wishlist</span>
-                      </a>
-                  </p>
-              </div>
-          </aside>
-      </div>
-  </article>
 
 
 
@@ -241,25 +105,26 @@
         <div class="card">
             <article class="filter-group">
               <header class="card-header">
-                <h5 class="title text-center">CART</h5>
+                <h5 class="title text-center mb-3">CART</h5>
                 <div class="row ">
-                  <div id="{{ i }}" class="col-12  " *ngFor="let data of sampleSuggestionsArray; let i = index">
+                  <div  class="col-12  " *ngFor="let data of cartitems; ">
                     <div class="row    ">
-                      <div class="col-6">
-                        <div class=" ">{{ data.menuName }}</div>
-                        <small class=" ">{{ data.desc }}</small>
+                      <h1>hello</h1>
+                      <!-- <div class="col-6">
+                        <div class=" ">{{ data.product_name }}</div>
+                        <small class=" ">{{ data.product_description }}</small>
                       </div>
 
 
                       <div class="col-2 ">
-                          <div>${{ data.variationCost }}</div>
+                          <div>${{ data.price }}</div>
                       </div>
                       <div class="col-4">
-                          <button (click)="addToCart(data)" class="btn btn-secondary mb-1">
+                          <button class="btn btn-secondary mb-1">
                           Add Item
                           <span class="icon-add_circle"></span>
                         </button>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -267,15 +132,19 @@
               </article>
 
         </div>
-        <div class="card">
+        <div class="card mt-3">
           <article class="filter-group">
             <header class="card-header">
-              <mat-chip-listbox aria-label="Fish selection">
-                <mat-chip-option>One fish</mat-chip-option>
-                <mat-chip-option>Two fish</mat-chip-option>
-                <mat-chip-option color="accent" selected>Accent fish</mat-chip-option>
-                <mat-chip-option color="warn">Warn fish</mat-chip-option>
-              </mat-chip-listbox>
+              <h5 class="title text-center mb-3">CATEGORIES</h5>
+              <div>
+                <mat-chip-list aria-label="Fish selection">
+                  <mat-chip  *ngFor="let item of categorylist">{{item.category_name}}</mat-chip>
+
+
+              </mat-chip-list>
+
+              </div>
+
               </header>
               </article>
               </div>

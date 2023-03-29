@@ -1,13 +1,27 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { ApiService } from '../api.service';
 @Component({
   selector: 'app-productpage',
   templateUrl: './productpage.component.html',
   styleUrls: ['./productpage.component.scss'],
 })
 export class ProductpageComponent {
-  constructor(public router: Router, public location: Location) {}
+  categorylist: any;
+  categoryID: any;
+  productlist: any;
+  cartdata: any = [];
+  cartitems: any = [];
+  constructor(
+    public router: Router,
+    public location: Location,
+    private Api: ApiService
+  ) {}
+  ngOnInit() {
+    this.getIdFromSession();
+    this.getData();
+  }
   toPrevious() {
     this.location.back();
   }
@@ -36,11 +50,25 @@ export class ProductpageComponent {
     },
   ];
 
-  addToCart(item: any) {
-    // if (!this.cartService.itemInCart(item)) {
-    //   item.qtyTotal = 1;
-    //   this.cartService.addToCart(item); //add items in cart
-    //   this.items = [...this.cartService.getItems()];
-    //}
+  getData() {
+    this.Api.getCategoryData().subscribe((res) => {
+      this.categorylist = res;
+      console.log(this.categorylist);
+    });
+    var Id = this.categoryID;
+    this.Api.getProductsByCategory(Id).subscribe((res) => {
+      this.productlist = res;
+      console.log(res);
+    });
   }
+  cartData(data: any) {
+    console.log(data);
+    this.cartdata = [...this.cartdata, data];
+    sessionStorage.setItem('cartData', JSON.stringify(this.cartdata));
+    this.cartitems = sessionStorage.getItem('cartData');
+  }
+  getIdFromSession() {
+    this.categoryID = sessionStorage.getItem('ID');
+  }
+  addTocart() {}
 }

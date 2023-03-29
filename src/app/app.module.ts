@@ -17,11 +17,11 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ProductpageComponent } from './productpage/productpage.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './Dialog/login/login.component';
-
+import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
-import { MatChipsModule } from '@angular/material/chips';
 
+import { MatChipsModule } from '@angular/material/chips';
 import { CheckoutComponent } from './checkout/checkout.component';
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     CheckoutComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     MatChipsModule,
     MatInputModule,
