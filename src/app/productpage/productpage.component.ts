@@ -11,8 +11,12 @@ export class ProductpageComponent {
   categorylist: any;
   categoryID: any;
   productlist: any;
+  nodataToDisplay: any;
+  totalPrice: any;
   cartdata: any = [];
   cartitems: any = [];
+  productLength: any;
+  noData: any;
   constructor(
     public router: Router,
     public location: Location,
@@ -21,6 +25,7 @@ export class ProductpageComponent {
   ngOnInit() {
     this.getIdFromSession();
     this.getData();
+    this.cartDataLength();
   }
   toPrevious() {
     this.location.back();
@@ -50,25 +55,75 @@ export class ProductpageComponent {
     },
   ];
 
+  /* Method to get the datas from Api */
   getData() {
     this.Api.getCategoryData().subscribe((res) => {
       this.categorylist = res;
-      console.log(this.categorylist);
     });
     var Id = this.categoryID;
     this.Api.getProductsByCategory(Id).subscribe((res) => {
       this.productlist = res;
-      console.log(res);
+      this.productLength = this.productlist.length;
+      if (this.productlist.length == 0) {
+        this.nodataToDisplay = true;
+      } else {
+        this.nodataToDisplay = false;
+      }
+      console.log(this.nodataToDisplay);
     });
   }
+
+  /* Method to add datas that are selected to the cart */
   cartData(data: any) {
-    console.log(data);
-    this.cartdata = [...this.cartdata, data];
-    sessionStorage.setItem('cartData', JSON.stringify(this.cartdata));
-    this.cartitems = sessionStorage.getItem('cartData');
+    // this.cartdata = [...this.cartdata, data];//dont delete
+    this.cartdata = [...this.cartitems, data];
+    localStorage.setItem('cartData', JSON.stringify(this.cartdata));
+    this.getCartData();
+    // this.cartitems = sessionStorage.getItem('cartData');
   }
+  getCartData() {
+    const _data = localStorage.getItem('cartData');
+    this.cartitems = JSON.parse(_data || '{}');
+    this.cartDataLength();
+    console.log(this.cartitems);
+  }
+  cartDataLength() {
+    const _data = localStorage.getItem('cartData');
+    this.cartitems = JSON.parse(_data || '{}');
+    localStorage.setItem('CartLength', this.cartitems.length);
+    if (this.cartitems.length == 0) {
+      this.noData = true;
+    } else {
+      this.noData = false;
+    }
+
+    //calculating total
+    var sum = 0;
+    this.cartitems.forEach((data: any) => {
+      var total = data.price;
+      sum += total;
+      console.log(sum, 'total');
+      this.totalPrice = sum;
+    });
+  }
+
+  /* Method to get the ID from the session to get the category of the products */
   getIdFromSession() {
-    this.categoryID = sessionStorage.getItem('ID');
+    this.categoryID = localStorage.getItem('ID');
+  }
+  getbycategory(id: any) {
+    console.log(id);
+    localStorage.setItem('ID', id.id);
+    this.ngOnInit();
+  }
+  deleteCartItems(data: any) {
+    const deldata = [...this.cartitems];
+    const index = deldata.findIndex((x) => x.id === data.id);
+    this.cartitems.splice(index, 1);
+    this.cartitems = [...this.cartitems];
+    localStorage.setItem('cartData', JSON.stringify(this.cartitems));
+    // localStorage.setItem('Data', JSON.stringify(this.tableData));
+    this.getCartData();
   }
   addTocart() {}
 }

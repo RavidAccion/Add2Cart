@@ -19,10 +19,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './Dialog/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'primeng/carousel';
+import { MatSelectModule } from '@angular/material/select';
 import { ButtonModule } from 'primeng/button';
-
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { AdminComponent } from './admin/admin.component';
+import { MatBadgeModule } from '@angular/material/badge';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,8 +35,13 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ProductpageComponent,
     LoginComponent,
     CheckoutComponent,
+    AdminComponent,
   ],
   imports: [
+    MatBadgeModule,
+    MatCardModule,
+    IvyCarouselModule,
+    MatSelectModule,
     HttpClientModule,
     BrowserModule,
     MatChipsModule,

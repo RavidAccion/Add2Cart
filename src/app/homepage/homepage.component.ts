@@ -20,6 +20,12 @@ export class HomepageComponent {
     'https://picsum.photos/200/300?image=4',
   ];
 
+  images = [
+    { path: '../../assets/images/amazon1.jpg' },
+    { path: '../../assets/images/banner-bg.png' },
+    { path: '../../assets/images/amazon2.jpg' },
+  ];
+
   hrefs = ['one', 'two', 'three', 'four', 'five'];
   constructor(
     private router: Router,
@@ -46,12 +52,12 @@ export class HomepageComponent {
 
   toProduct(id: any) {
     console.log(id);
-    sessionStorage.setItem('ID', id.id);
+    localStorage.setItem('ID', id.id);
     this.router.navigate(['/product']);
   }
 
   openDialog() {
-    this.firstTime = sessionStorage.getItem('Token');
+    this.firstTime = localStorage.getItem('Token');
     // if (this.firstTime != 'yes') {
     //   console.log('yes');
     //   console.log(this.firstTime);
@@ -63,6 +69,6 @@ export class HomepageComponent {
       });
       console.log(this.firstTime);
     }
-    sessionStorage.setItem('Token', 'yes');
+    localStorage.setItem('Token', 'yes');
   }
 }

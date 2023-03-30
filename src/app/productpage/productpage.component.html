@@ -7,7 +7,15 @@
   </button>
 
 </section>
-<section class="section-content padding-y">
+
+<section class="section-content padding-y nodata" *ngIf ="nodataToDisplay==true">
+  <div class="container">
+    <div class="row text-center">
+      <h3 style="color:white;">No stocks Available</h3>
+    </div>
+    </div>
+    </section>
+<section class="section-content padding-y" *ngIf ="nodataToDisplay==false">
   <div class="container">
 
   <div class="row">
@@ -16,7 +24,7 @@
 
   <header class="border-bottom mb-4 pb-3">
           <div class="form-inline">
-              <span class="mr-md-auto">32 Items found </span>
+              <span class="mr-md-auto">{{productLength}} Items found </span>
               <select class="mr-2 form-control">
                   <option>Latest items</option>
                   <option>Trending</option>
@@ -68,8 +76,9 @@
           <aside class="col-sm-3">
               <div class="info-aside">
                   <div class="price-wrap">
-                      <span class="price h5">{{item.price}}</span>
-                      <!-- <del class="price-old"> $198</del> -->
+                    <del class="price-old"> ₹{{item.price+200}}</del>
+                      <span class="price h5 ml-2">₹{{item.price}}</span>
+
                   </div>
                   <p class="text-success">Free shipping</p>
                   <br>
@@ -102,31 +111,49 @@
       </main>
       <aside class="col-md-4">
 
-        <div class="card">
+
+  <div class="card heightmax">
             <article class="filter-group">
               <header class="card-header">
-                <h5 class="title text-center mb-3">CART</h5>
-                <div class="row ">
+                <h5 class="title text-center mb-3"*ngIf ="noData==false">CART</h5>
+                <div class="row emptyBg" *ngIf ="noData ==true">
+                  <h5 class="text-center">Your cart is empty</h5>
+                </div>
+                <div class="row" *ngIf ="noData==false">
                   <div  class="col-12  " *ngFor="let data of cartitems; ">
                     <div class="row    ">
-                      <h1>hello</h1>
-                      <!-- <div class="col-6">
-                        <div class=" ">{{ data.product_name }}</div>
+                      <!-- <h1>hello</h1> -->
+                      <div class="col-6">
+                        <div class=" fWeight">{{ data.product_name }}</div>
                         <small class=" ">{{ data.product_description }}</small>
                       </div>
 
 
-                      <div class="col-2 ">
-                          <div>${{ data.price }}</div>
+                      <div class="col-3 ">
+                          <div>₹{{ data.price }}</div>
+                          <small class=" ">
+                            <p class="text-success fontsize">Free shipping</p>
+                          </small>
                       </div>
-                      <div class="col-4">
-                          <button class="btn btn-secondary mb-1">
-                          Add Item
-                          <span class="icon-add_circle"></span>
-                        </button>
-                      </div> -->
+                      <div class="col-3">
+                         <a><span><mat-icon style="color:rgb(1, 1, 1)">add_box</mat-icon></span>
+                          <span (click)="deleteCartItems(data)"><mat-icon style="color:red;"  >delete</mat-icon></span> </a>
+                      </div>
                     </div>
                   </div>
+                </div>
+                <div class="row" *ngIf ="noData==false">
+                  <section class="text-center mt-3">
+                  <h6><div>Total Price : ₹{{totalPrice }}</div></h6>
+                  </section>
+     <section>
+
+                          <div class="example-button-row text-center">
+
+                            <button mat-raised-button color="accent">Buy Now</button>
+
+                          </div>
+                        </section>
                 </div>
               </header>
               </article>
@@ -138,8 +165,9 @@
               <h5 class="title text-center mb-3">CATEGORIES</h5>
               <div>
                 <mat-chip-list aria-label="Fish selection">
-                  <mat-chip  *ngFor="let item of categorylist">{{item.category_name}}</mat-chip>
-
+                  <div *ngFor="let item of categorylist">
+                  <mat-chip (click)="getbycategory(item)" >{{item.category_name}}</mat-chip>
+                </div>
 
               </mat-chip-list>
 

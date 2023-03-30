@@ -8,12 +8,15 @@ import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 export class HeaderComponent {
   @ViewChild('searchbar') searchbar!: ElementRef;
   searchText = '';
+  CartLength: any;
 
   toggleSearch: boolean = false;
   // constructor(private http: Http) { }
 
   constructor() {}
-
+  ngOnInit() {
+    this.CartLength = localStorage.getItem('CartLength');
+  }
   openSearch() {
     // this.toggleSearch = true;
     // this.toggleSearch != this.toggleSearch;

@@ -13,4 +13,15 @@ export class ApiService {
   getProductsByCategory(Id: any) {
     return this.http.get(this.url + `/api/Product/getProducts/${Id}`);
   }
+  craeteProduct(data: any) {
+    return this.http.post(this.url + '/api/Product/create', data);
+  }
+
+  craeteCategory(data: any) {
+    return this.http.post(this.url + '/api/category/create', data);
+  }
+
+  deleteCategory(id: any) {
+    return this.http.delete(this.url + `/api/category/${id}/delete`);
+  }
 }

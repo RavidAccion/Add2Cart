@@ -1,0 +1,149 @@
+<section class="m-2">
+<div class="row mt-3">
+  <div class="col-4">
+    <mat-card class="cardHeight">
+      <mat-card-content>
+        <h4 class="text-center">Add Product</h4>
+        <form [formGroup]="productForm" (ngSubmit)="subData();" class="w-100">
+          <div class="form-group pb-3 ">
+            <label class="pb-3 " for="exampleInputEmail1">product name</label>
+            <input type="text" class="form-control" formControlName="product_name" id="exampleInputEmail1"
+              aria-describedby="emailHelp">
+            <span class="Warning-color" *ngIf="productForm.get('product_name').touched && productForm.get('product_name').
+            hasError('required')">
+              Enter product_name</span>
+            <span class="Warning-color"*ngIf="productForm.get('product_name').touched && productForm.get('product_name').
+            hasError('minLength')">
+              Enter valid product_name</span>
+          </div>
+
+
+          <div class="form-group  pb-3">
+            <label class="pb-3 " for="exampleInputPassword1">price</label>
+            <input type="text" class="form-control" formControlName="price"
+            id="exampleInputPassword1">
+            <span class="Warning-color"*ngIf="productForm.get('price').touched && productForm.get
+            ('price').
+            hasError('required')">Enter
+            price</span>
+          </div>
+
+          <div class="form-group  pb-3">
+            <label class="pb-3 " for="exampleInputPassword1">product Description</label>
+            <input type="text" class="form-control" formControlName="product_description"
+            id="exampleInputPassword1">
+            <span class="Warning-color"*ngIf="productForm.get('product_description').touched && productForm.get
+            ('product_description').
+            hasError('required')">Enter
+            product_description</span>
+          </div>
+
+          <div class="form-group  pb-3">
+            <label class="pb-3 " for="exampleInputPassword1">product weight</label>
+            <input type="text" class="form-control" formControlName="product_weight"
+            id="exampleInputPassword1">
+            <span class="Warning-color"*ngIf="productForm.get('product_weight').touched && productForm.get
+            ('product_weight').
+            hasError('required')">Enter
+              password</span>
+          </div>
+
+          <div class="form-group  pb-3">
+            <label class="pb-3 " for="exampleInputPassword1">category</label>
+
+            <mat-select class="form-control" formControlName="category" >
+              <mat-option *ngFor="let category of categorylist" [value]="category.id">
+                {{category.category_name}}
+              </mat-option>
+            </mat-select>
+            <span class="Warning-color"*ngIf="productForm.get('category').touched && productForm.get
+            ('category').
+            hasError('required')">Enter
+            category</span>
+          </div>
+
+          <div class="form-group  pb-3">
+            <label class="pb-3 " for="exampleInputPassword1">stock</label>
+            <input type="text" class="form-control" formControlName="stock"
+            id="exampleInputPassword1">
+            <span class="Warning-color"*ngIf="productForm.get('stock').touched && productForm.get
+            ('stock').
+            hasError('required')">Enter
+            stock</span>
+          </div>
+
+          <div class=" text-center pb-3">
+            <button type="submit" class="btn btn-primary bt buttonchange"
+            [disabled]="!productForm.valid">Add</button>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-4">
+    <mat-card>
+      <mat-card-content *ngIf ="deleteForm==false">
+
+        <h4 class="text-center" >Add Category
+          <span style="padding-left:60px"> <button mat-raised-button color="warn" (click)="deleteCategory()">Delete</button></span></h4>
+        <form [formGroup]="categoryForm" (ngSubmit)="categoryData();" class="w-100">
+          <div class="form-group pb-3 ">
+            <label class="pb-3 " for="exampleInputEmail1">category Name</label>
+            <input type="text" class="form-control" formControlName="category_name" id="exampleInputEmail1"
+              aria-describedby="emailHelp">
+            <span class="Warning-color"*ngIf="categoryForm.get('category_name').touched && categoryForm.get('category_name').
+            hasError('minLength')">
+              Enter valid category_name</span>
+          </div>
+
+
+          <div class="form-group  pb-3">
+            <label class="pb-3 " for="exampleInputPassword1">Category Description</label>
+            <input type="text" class="form-control" formControlName="category_description"
+            id="exampleInputPassword1">
+            <span class="Warning-color"*ngIf="categoryForm.get('category_description').touched
+            && categoryForm.get
+            ('category_description').
+            hasError('required')">Enter
+            category description</span>
+          </div>
+
+
+          <div class=" text-center pb-3">
+            <button type="submit" class="btn btn-primary bt buttonchange"
+            [disabled]="!categoryForm.valid">Add</button>
+          </div>
+
+        </form>
+      </mat-card-content>
+
+      <mat-card-content *ngIf ="deleteForm==true">
+
+        <h4 class="text-center" >Delete Category
+          <span style="padding-left:60px"> <button mat-raised-button color="warn"
+            (click)="addCategory()">Add</button></span></h4>
+          <form [formGroup]="deletecategory" (ngSubmit)="categoryDeleteData();" class="w-100">
+          <div class="form-group  pb-3">
+            <label class="pb-3 " for="exampleInputPassword1">select Category</label>
+
+            <mat-select class="form-control" formControlName="category_id" >
+              <mat-option *ngFor="let category of categorylist" [value]="category.id">
+                {{category.category_name}}
+              </mat-option>
+            </mat-select>
+
+          </div>
+
+
+          <div class=" text-center pb-3">
+            <button type="submit" class="btn btn-primary bt buttonchange">Add</button>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>
+</section>

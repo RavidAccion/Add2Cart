@@ -29,13 +29,17 @@ max-height: 120px;
 
 .card-1{
 // background-image: url(https://ionicframework.com/img/getting-started/ionic-native-card.png);
-background-image: url(https://ionicframework.com/img/getting-started/theming-card.png);
+background-image: url('../../assets/images/banner-bg.png');
     background-repeat: no-repeat;
   background-position: right;
-  background-size: 80px;
+
+  background-size: 292px 139px;
   min-height: 134px;
 }
-
+.cardimage{
+  color: white;
+  font-family: cursive;
+}
 .card-2{
  background-image: url(https://ionicframework.com/img/getting-started/components-card.png);
     background-repeat: no-repeat;
@@ -56,13 +60,11 @@ background-image: url(https://ionicframework.com/img/getting-started/theming-car
   margin: 20px;
 }
 }
-// .pad{
-//   padding-top: 95px;
-// }
+
 .banner_bg_main {
   width: 100%;
   float: left;
-  background-image: url(../../assets/images/banner-bg.png);
+  // background-image: url(../../assets/images/banner-bg.png);
   background-color: lightsteelblue;
   height: auto;
   background-size: 100%;
