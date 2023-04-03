@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ApiService } from '../api.service';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import { CheckoutComponent } from '../Dialog/checkout/checkout.component';
 @Component({
   selector: 'app-productpage',
   templateUrl: './productpage.component.html',
@@ -20,7 +26,8 @@ export class ProductpageComponent {
   constructor(
     public router: Router,
     public location: Location,
-    private Api: ApiService
+    private Api: ApiService,
+    public dialog: MatDialog
   ) {}
   ngOnInit() {
     this.getIdFromSession();
@@ -60,22 +67,39 @@ export class ProductpageComponent {
     this.Api.getCategoryData().subscribe((res) => {
       this.categorylist = res;
     });
+
     var Id = this.categoryID;
-    this.Api.getProductsByCategory(Id).subscribe((res) => {
-      this.productlist = res;
-      this.productLength = this.productlist.length;
-      if (this.productlist.length == 0) {
-        this.nodataToDisplay = true;
-      } else {
-        this.nodataToDisplay = false;
-      }
-      console.log(this.nodataToDisplay);
-    });
+    if (this.categoryID == 0) {
+      this.Api.getProductData().subscribe((res) => {
+        this.productlist = res;
+        this.productLength = this.productlist.length;
+        console.log(this.productLength);
+        if (this.productlist.length == 0) {
+          this.nodataToDisplay = true;
+        } else {
+          this.nodataToDisplay = false;
+        }
+      });
+    } else {
+      this.Api.getProductsByCategory(Id).subscribe((res) => {
+        this.productlist = res;
+        this.productLength = this.productlist.length;
+        console.log(this.productLength);
+        if (this.productlist.length == 0) {
+          this.nodataToDisplay = true;
+        } else {
+          this.nodataToDisplay = false;
+        }
+      });
+    }
+
+    console.log(this.nodataToDisplay);
   }
 
   /* Method to add datas that are selected to the cart */
   cartData(data: any) {
-    // this.cartdata = [...this.cartdata, data];//dont delete
+    //this.cartdata = [...this.cartdata, data];
+    //dont delete
     this.cartdata = [...this.cartitems, data];
     localStorage.setItem('cartData', JSON.stringify(this.cartdata));
     this.getCartData();
@@ -102,14 +126,15 @@ export class ProductpageComponent {
     this.cartitems.forEach((data: any) => {
       var total = data.price;
       sum += total;
-      console.log(sum, 'total');
       this.totalPrice = sum;
+      localStorage.setItem('totalPrice', JSON.stringify(this.totalPrice));
     });
   }
 
   /* Method to get the ID from the session to get the category of the products */
   getIdFromSession() {
     this.categoryID = localStorage.getItem('ID');
+    console.log(this.categoryID);
   }
   getbycategory(id: any) {
     console.log(id);
@@ -125,5 +150,16 @@ export class ProductpageComponent {
     // localStorage.setItem('Data', JSON.stringify(this.tableData));
     this.getCartData();
   }
-  addTocart() {}
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CheckoutComponent, {
+      disableClose: true,
+      width: '600px',
+      height: '600px',
+      data: this.cartitems,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
+  }
 }

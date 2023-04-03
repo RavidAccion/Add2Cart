@@ -24,7 +24,7 @@ import { ButtonModule } from 'primeng/button';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
-import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutComponent } from './Dialog/checkout/checkout.component';
 import { AdminComponent } from './admin/admin.component';
 import { MatBadgeModule } from '@angular/material/badge';
 @NgModule({

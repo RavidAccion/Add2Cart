@@ -48,7 +48,7 @@
           <aside class="col-md-3">
               <a href="#" class="img-wrap">
                   <span class="badge badge-danger"> NEW </span>
-                  <img src="assets/images/items/3.jpg">
+                  <img src="assets/images/items/2.jpg">
               </a>
           </aside>
           <div class="col-md-6">
@@ -69,8 +69,7 @@
                       </ul>
                       <div class="label-rating">7/10</div>
                   </div>
-                  <p> {{item.product_description
-                  }}</p>
+                  <p> {{item.product_description }}</p>
               </div>
           </div>
           <aside class="col-sm-3">
@@ -112,14 +111,14 @@
       <aside class="col-md-4">
 
 
-  <div class="card heightmax">
+  <div class="card ">
             <article class="filter-group">
               <header class="card-header">
                 <h5 class="title text-center mb-3"*ngIf ="noData==false">CART</h5>
                 <div class="row emptyBg" *ngIf ="noData ==true">
                   <h5 class="text-center">Your cart is empty</h5>
                 </div>
-                <div class="row" *ngIf ="noData==false">
+                <div class="row heightmax" *ngIf ="noData==false">
                   <div  class="col-12  " *ngFor="let data of cartitems; ">
                     <div class="row    ">
                       <!-- <h1>hello</h1> -->
@@ -150,7 +149,7 @@
 
                           <div class="example-button-row text-center">
 
-                            <button mat-raised-button color="accent">Buy Now</button>
+                            <button mat-raised-button color="accent"(click)="openDialog()">Buy Now</button>
 
                           </div>
                         </section>

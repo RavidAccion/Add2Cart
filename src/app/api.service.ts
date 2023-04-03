@@ -10,6 +10,10 @@ export class ApiService {
   getCategoryData() {
     return this.http.get(this.url + '/api/category/get');
   }
+  getProductData() {
+    return this.http.get(this.url + '/api/Product/get');
+  }
+
   getProductsByCategory(Id: any) {
     return this.http.get(this.url + `/api/Product/getProducts/${Id}`);
   }

@@ -55,6 +55,10 @@ export class HomepageComponent {
     localStorage.setItem('ID', id.id);
     this.router.navigate(['/product']);
   }
+  allProduct() {
+    localStorage.setItem('ID', '0');
+    this.router.navigate(['/product']);
+  }
 
   openDialog() {
     this.firstTime = localStorage.getItem('Token');

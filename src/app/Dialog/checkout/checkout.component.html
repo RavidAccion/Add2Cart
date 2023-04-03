@@ -1,0 +1,72 @@
+<h1 mat-dialog-title class="text-center" style="color:rgb(159, 19, 19);    font-weight: 700;">PAYMENT</h1>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-md-6">
+      <h5>{{'Product Name'}}</h5>
+    </div>
+    <div class="col-md-2">
+      <h5>{{'Price'}}</h5>
+    </div>
+    <div class="col-md-4">
+      <h5>{{"Shipping Fee"}}</h5>
+    </div>
+  </div>
+<div class="row" *ngFor="let item of data;">
+  <div class="col-md-6">
+    <p>{{item.product_name}}</p>
+  </div>
+  <div class="col-md-2">
+    <p>₹{{item.price}}</p>
+  </div>
+  <div class="col-md-4">
+    <p class="text-success fontsize">Free shipping</p>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-md-5"></div>
+  <div class="col-md-3">
+    <h5>Discount </h5>
+  </div>
+  <div class="col-md-1">
+    </div>
+  <div class="col-md-3">
+    <h5 class="margin1">₹{{lengt * 50}}</h5>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-md-5"></div>
+  <div class="col-md-3">
+    <h5>Total Price</h5>
+  </div>
+
+  <div class="col-md-4">
+    <h5>    <del class="price-old delColor"> ₹{{totalPrice}}</del>
+      <span class="ml-2">₹{{totalPrice-lengt * 50}}</span></h5>
+  </div>
+</div>
+</div>
+<hr>
+<div class="row">
+  <h5>Payment Options</h5>
+</div>
+<div class="row ">
+  <div class="col-md-5">
+
+  </div>
+  <div class="col-md-7">
+    <mat-chip-list   selectable="true" multiple="false">
+      <mat-chip  *ngFor="let offer of offers"  (click)="payment(offer)">
+        {{offer.name}}&nbsp;
+      </mat-chip>
+
+    </mat-chip-list>
+
+
+  </div>
+
+</div>
+<hr>
+<h1 mat-dialog-title class="text-center" style="color:rgb(159, 19, 19);    font-weight: 700;">Address Details</h1>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>
