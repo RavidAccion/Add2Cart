@@ -1,6 +1,17 @@
 .margin1{
   margin-left:12px;
 }
+.max{
+  max-height: 460px;
+  overflow: scroll;
+}
+.minheight{
+  max-height: 100px;
+  overflow: scroll;
+}
+::-webkit-scrollbar {
+  display: none;
+}
 .delColor{
   color: red;
 }

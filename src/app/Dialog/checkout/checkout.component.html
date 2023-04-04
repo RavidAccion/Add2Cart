@@ -1,5 +1,16 @@
-<h1 mat-dialog-title class="text-center" style="color:rgb(159, 19, 19);    font-weight: 700;">PAYMENT</h1>
-<div mat-dialog-content>
+<div class="row">
+  <div class="col-4">
+    <!-- <button mat-raised-button mat-dialog-close color="primary"  class="button ml-5" >Cancel</button> -->
+    <mat-icon mat-dialog-close aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_back"></mat-icon>
+  </div>
+  <div class="col-4">
+    <h1 mat-dialog-title class="text-center " style="color:rgb(159, 19, 19);    font-weight: 700;">Order Confirmation</h1>
+  </div>
+  <div class="col-4"></div>
+</div>
+
+<div mat-dialog-content class="max">
+
   <div class="row">
     <div class="col-md-6">
       <h5>{{'Product Name'}}</h5>
@@ -11,6 +22,7 @@
       <h5>{{"Shipping Fee"}}</h5>
     </div>
   </div>
+  <div class="minheight">
 <div class="row" *ngFor="let item of data;">
   <div class="col-md-6">
     <p>{{item.product_name}}</p>
@@ -22,26 +34,29 @@
     <p class="text-success fontsize">Free shipping</p>
   </div>
 </div>
+</div>
 <div class="row mt-3">
   <div class="col-md-5"></div>
   <div class="col-md-3">
-    <h5>Discount </h5>
+    <h6>Discount </h6>
   </div>
   <div class="col-md-1">
     </div>
   <div class="col-md-3">
-    <h5 class="margin1">₹{{lengt * 50}}</h5>
+    <h6 class="margin1">₹{{lengt * 50}}</h6>
   </div>
 </div>
 <div class="row mt-3">
   <div class="col-md-5"></div>
   <div class="col-md-3">
-    <h5>Total Price</h5>
+    <h6>Amount Payable</h6>
   </div>
 
   <div class="col-md-4">
-    <h5>    <del class="price-old delColor"> ₹{{totalPrice}}</del>
-      <span class="ml-2">₹{{totalPrice-lengt * 50}}</span></h5>
+    <h6>
+        <del class="price-old delColor"> ₹{{totalPrice}}</del>
+      <span class="ml-2">₹{{totalPrice-lengt * 50}}</span>
+    </h6>
   </div>
 </div>
 </div>
@@ -67,6 +82,38 @@
 </div>
 <hr>
 <h1 mat-dialog-title class="text-center" style="color:rgb(159, 19, 19);    font-weight: 700;">Address Details</h1>
+<div class="example-container text-center">
+  <form [formGroup]="address" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+
+
+
+        <mat-form-field floatLabel="never" class="form-element ">
+          <input type="text" matInput placeholder="name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field floatLabel="never" class="form-element ml-5">
+          <input type="text" matInput placeholder="phone" formControlName="phone">
+        </mat-form-field>
+        <mat-form-field floatLabel="never" class="form-element">
+          <input type="text" matInput placeholder="state" formControlName="state">
+        </mat-form-field>
+        <mat-form-field floatLabel="never" class="form-element  ml-5">
+          <input type="text" matInput placeholder="city" formControlName="city">
+        </mat-form-field>
+        <mat-form-field  floatLabel="never" class="form-element ">
+          <input type="text" matInput placeholder="pin" formControlName="pin">
+        </mat-form-field>
+        <mat-form-field floatLabel="never" class="form-element ml-5">
+          <input type="text" matInput placeholder="landmark" formControlName="landmark">
+        </mat-form-field>
+        <div class="form-element text-center">
+          <button mat-raised-button mat-dialog-close color="warn"  class="button" >Cancel</button>
+          <button mat-raised-button color="primary" type="submit" class="button  ml-5" >Place Order</button>
+
+        </div>
+      </div>
+      </form>
+</div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+  <!-- <button mat-button mat-dialog-close>Close</button> -->
 </div>

@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'primeng/carousel';
 import { MatSelectModule } from '@angular/material/select';
 import { ButtonModule } from 'primeng/button';
+import { MatRadioModule } from '@angular/material/radio';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -42,6 +43,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatCardModule,
     IvyCarouselModule,
     MatSelectModule,
+    MatRadioModule,
     HttpClientModule,
     BrowserModule,
     MatChipsModule,

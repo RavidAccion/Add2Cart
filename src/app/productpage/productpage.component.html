@@ -82,7 +82,8 @@
                   <p class="text-success">Free shipping</p>
                   <br>
                   <p>
-                      <a  class="btn btn-primary btn-block" (click)="cartData(item)"> Add To cart </a>
+                    <a  class="btn btn-primary btn-block" (click)="addToCart(item)"> Add To cart </a>
+                      <!-- <a  class="btn btn-primary btn-block" (click)="cartData(item)"> Add To cart </a> -->
                       <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i>
                           <span class="text">Add to wishlist</span>
                       </a>
@@ -115,6 +116,9 @@
             <article class="filter-group">
               <header class="card-header">
                 <h5 class="title text-center mb-3"*ngIf ="noData==false">CART</h5>
+                <div class="row emptyBg" *ngIf ="noUser ==true">
+                  <h5 class="text-center">Login To View cart</h5>
+                </div>
                 <div class="row emptyBg" *ngIf ="noData ==true">
                   <h5 class="text-center">Your cart is empty</h5>
                 </div>
@@ -136,7 +140,8 @@
                       </div>
                       <div class="col-3">
                          <a><span><mat-icon style="color:rgb(1, 1, 1)">add_box</mat-icon></span>
-                          <span (click)="deleteCartItems(data)"><mat-icon style="color:red;"  >delete</mat-icon></span> </a>
+                          <!-- <span (click)="deleteCartItems(data)"><mat-icon style="color:red;"  >delete</mat-icon></span>  -->
+                          </a>
                       </div>
                     </div>
                   </div>
@@ -149,7 +154,9 @@
 
                           <div class="example-button-row text-center">
 
-                            <button mat-raised-button color="accent"(click)="openDialog()">Buy Now</button>
+                            <button mat-raised-button color="accent"(click)="openDialog()">proceed To Payment
+
+                            </button>
 
                           </div>
                         </section>

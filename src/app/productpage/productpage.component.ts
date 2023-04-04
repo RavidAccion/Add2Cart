@@ -8,21 +8,26 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { CheckoutComponent } from '../Dialog/checkout/checkout.component';
+import { LoginComponent } from '../Dialog/login/login.component';
 @Component({
   selector: 'app-productpage',
   templateUrl: './productpage.component.html',
   styleUrls: ['./productpage.component.scss'],
 })
 export class ProductpageComponent {
+  firstTime: any;
   categorylist: any;
   categoryID: any;
   productlist: any;
   nodataToDisplay: any;
   totalPrice: any;
   cartdata: any = [];
+  notLoggedIn: any;
   cartitems: any = [];
   productLength: any;
   noData: any;
+  noUser: boolean = false;
+  UserId: any;
   constructor(
     public router: Router,
     public location: Location,
@@ -31,36 +36,14 @@ export class ProductpageComponent {
   ) {}
   ngOnInit() {
     this.getIdFromSession();
+    this.checkUserId();
     this.getData();
-    this.cartDataLength();
+    this.notLoggedIncart();
+    this.getCartData();
   }
   toPrevious() {
     this.location.back();
   }
-
-  sampleSuggestionsArray = [
-    {
-      id: '1',
-      menuName: 'Item 1',
-      variationCost: '20.50',
-      desc: 'Lorem ipsum dolor sit amet..',
-      qtyTotal: 0,
-    },
-    {
-      id: '2',
-      menuName: 'Item 2',
-      variationCost: '10',
-      desc: 'Lorem ipsum dolor sit amet..',
-      qtyTotal: 0,
-    },
-    {
-      id: '3',
-      menuName: 'Item 3',
-      variationCost: '5.50',
-      desc: 'Lorem ipsum dolor sit amet..',
-      qtyTotal: 0,
-    },
-  ];
 
   /* Method to get the datas from Api */
   getData() {
@@ -96,65 +79,99 @@ export class ProductpageComponent {
     console.log(this.nodataToDisplay);
   }
 
-  /* Method to add datas that are selected to the cart */
-  cartData(data: any) {
-    //this.cartdata = [...this.cartdata, data];
-    //dont delete
-    this.cartdata = [...this.cartitems, data];
-    localStorage.setItem('cartData', JSON.stringify(this.cartdata));
-    this.getCartData();
-    // this.cartitems = sessionStorage.getItem('cartData');
-  }
   getCartData() {
-    const _data = localStorage.getItem('cartData');
-    this.cartitems = JSON.parse(_data || '{}');
-    this.cartDataLength();
-    console.log(this.cartitems);
-  }
-  cartDataLength() {
-    const _data = localStorage.getItem('cartData');
-    this.cartitems = JSON.parse(_data || '{}');
-    localStorage.setItem('CartLength', this.cartitems.length);
-    if (this.cartitems.length == 0) {
-      this.noData = true;
-    } else {
-      this.noData = false;
-    }
+    var id = this.UserId;
+    this.Api.getCartDataById(id).subscribe((res) => {
+      this.cartitems = res;
+      console.log(this.cartitems);
 
-    //calculating total
-    var sum = 0;
-    this.cartitems.forEach((data: any) => {
-      var total = data.price;
-      sum += total;
-      this.totalPrice = sum;
-      localStorage.setItem('totalPrice', JSON.stringify(this.totalPrice));
+      if (this.cartitems.length == 0) {
+        this.noData = true;
+      } else {
+        this.noData = false;
+      }
+      //calculating total
+      var sum = 0;
+      this.cartitems.forEach((data: any) => {
+        var total = data.price;
+        sum += total;
+        this.totalPrice = sum;
+        console.log(this.totalPrice);
+        localStorage.setItem('totalPrice', JSON.stringify(this.totalPrice));
+      });
     });
   }
 
   /* Method to get the ID from the session to get the category of the products */
   getIdFromSession() {
+    this.UserId = localStorage.getItem('UserId');
+    this.firstTime = localStorage.getItem('isLoggedIn'); //to check weather the user is logged in
     this.categoryID = localStorage.getItem('ID');
     console.log(this.categoryID);
+  }
+  checkUserId() {
+    if (this.UserId == null) {
+      this.noUser = true;
+      console.log(this.noUser);
+    }
+  }
+  notLoggedIncart() {
+    if (this.firstTime == null) {
+      this.notLoggedIn = true;
+    }
   }
   getbycategory(id: any) {
     console.log(id);
     localStorage.setItem('ID', id.id);
     this.ngOnInit();
   }
-  deleteCartItems(data: any) {
-    const deldata = [...this.cartitems];
-    const index = deldata.findIndex((x) => x.id === data.id);
-    this.cartitems.splice(index, 1);
-    this.cartitems = [...this.cartitems];
-    localStorage.setItem('cartData', JSON.stringify(this.cartitems));
-    // localStorage.setItem('Data', JSON.stringify(this.tableData));
-    this.getCartData();
+  // deleteCartItems(data: any) {
+  //   const deldata = [...this.cartitems];
+  //   const index = deldata.findIndex((x) => x.id === data.id);
+  //   this.cartitems.splice(index, 1);
+  //   this.cartitems = [...this.cartitems];
+  //   localStorage.setItem('cartData', JSON.stringify(this.cartitems));
+  //   // localStorage.setItem('Data', JSON.stringify(this.tableData));
+  //   this.getCartData();
+  // }
+  addToCart(item: any) {
+    if (this.firstTime == null) {
+      const dialogRef = this.dialog.open(LoginComponent, {
+        disableClose: true,
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log(`Dialog result: ${result}`);
+        this.noUser = false;
+        this.ngOnInit();
+      });
+
+      console.log(this.firstTime);
+    } else {
+      console.log(item);
+      var data = {
+        id: 0,
+        user_id: this.UserId,
+        product_name: item.product_name,
+        price: item.price,
+        product_description: item.product_description,
+        category: item.category,
+        product_stock: item.stock,
+      };
+
+      this.Api.postCartdatas(data).subscribe((res) => {
+        console.log('data response1', res);
+        this.cartitems = res;
+        this.getCartData();
+      });
+      console.log('already logged in', data);
+    }
   }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(CheckoutComponent, {
       disableClose: true,
       width: '600px',
-      height: '600px',
+      height: '470px',
       data: this.cartitems,
     });
 

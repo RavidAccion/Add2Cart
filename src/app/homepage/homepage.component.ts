@@ -22,8 +22,10 @@ export class HomepageComponent {
 
   images = [
     { path: '../../assets/images/amazon1.jpg' },
-    { path: '../../assets/images/banner-bg.png' },
+    { path: '../../assets/images/amazon4.jpg' },
+    { path: '../../assets/images/flip2.webp' },
     { path: '../../assets/images/amazon2.jpg' },
+    { path: '../../assets/images/amazon4.jpg' },
   ];
 
   hrefs = ['one', 'two', 'three', 'four', 'five'];
@@ -62,10 +64,10 @@ export class HomepageComponent {
 
   openDialog() {
     this.firstTime = localStorage.getItem('Token');
-    // if (this.firstTime != 'yes') {
-    //   console.log('yes');
-    //   console.log(this.firstTime);
-    // }
+    if (this.firstTime != 'yes') {
+      console.log('yes');
+      console.log(this.firstTime);
+    }
     if (this.firstTime == null) {
       const dialogRef = this.dialog.open(LoginComponent);
       dialogRef.afterClosed().subscribe((result) => {
