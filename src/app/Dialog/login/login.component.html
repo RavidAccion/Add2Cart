@@ -1,9 +1,9 @@
-<section class="banner_bg_main" >
+<section class="banner_bg_main" *ngIf="forLogin" >
 <!-- <mat-dialog-content class="mat-typography"> -->
   <h4 class="text-center"><span> <a><img  src="../../../assets/images/kindpng_2738767.png"
      style="height:50px; padding: 13px;"></a></span> </h4>
 <section >
-  <form [formGroup]="login" (ngSubmit)="onSubmit()">
+  <form [formGroup]="login" (ngSubmit)="onSubmit()" >
 <div class="form-group">
     <mat-form-field floatLabel="never" class="form-element">
       <input type="text" matInput placeholder="Username" formControlName="username">
@@ -12,14 +12,93 @@
       <input type="password" matInput placeholder="Password" formControlName="password">
     </mat-form-field>
     <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button" >Submit Form</button>
+      <button mat-raised-button color="primary" type="submit" class="button" >Log In</button>
     </div>
   </div>
   </form>
 
+
+
 </section>
 <!-- </mat-dialog-content> -->
-<mat-dialog-actions align="end">
+<mat-dialog-actions class="optionend" >
+  <button mat-button (click)="register()"><mat-icon>how_to_reg</mat-icon>Register</button>
   <button mat-button mat-dialog-close>skip Login</button>
 </mat-dialog-actions>
 </section>
+
+
+<div class="example-container text-center"*ngIf="forLogin==false" >
+<section class="" >
+
+    <h4 class="text-center"><span>REGISTER</span> </h4>
+  <section >
+    <form [formGroup]="registerform" (ngSubmit)="registerdata()" *ngIf="forLogin==false">
+      <div class="form-group">
+        <div class="form-group ">
+          <label class=" " for="exampleInputPassword1">Name</label>
+          <input type="text" class="form-control" formControlName="name"
+          id="exampleInputPassword1">
+
+        </div>
+        <div class="form-group  ">
+          <label class="" for="exampleInputPassword1">email</label>
+          <input type="name" class="form-control" formControlName="email"
+          id="exampleInputPassword1">
+
+        </div>
+        <div class="form-group ">
+          <label class=" " for="exampleInputPassword1">Password</label>
+          <input type="name" class="form-control" formControlName="password"
+          id="exampleInputPassword1">
+
+        </div>
+        <div class="form-group ">
+          <label class=" " for="exampleInputPassword1">phone</label>
+          <input type="name" class="form-control" formControlName="phone"
+          id="exampleInputPassword1">
+
+        </div>
+        <div class="form-group  ">
+          <label class=" " for="exampleInputPassword1">state</label>
+          <input type="name" class="form-control" formControlName="state"
+          id="exampleInputPassword1">
+
+        </div>
+        <div class="form-group ">
+          <label class=" " for="exampleInputPassword1">city</label>
+          <input type="text" class="form-control" formControlName="city"
+          id="exampleInputPassword1">
+
+        </div>
+        <div class="form-group  ">
+          <label class=" " for="exampleInputPassword1">Pin</label>
+          <input type="text" class="form-control" formControlName="pin"
+          id="exampleInputPassword1">
+
+        </div>
+        <div class="form-group  ">
+          <label class="" for="exampleInputPassword1">LandMark</label>
+          <input type="name" class="form-control" formControlName="landmark"
+          id="exampleInputPassword1">
+
+        </div>
+
+<div class="example-button-row">
+  <button mat-raised-button mat-dialog-close color="accent"><mat-icon>close</mat-icon>Cancel</button>
+  <button mat-raised-button type="submit" class="ml-4" color="primary"><mat-icon>how_to_reg</mat-icon>Register</button>
+
+
+</div>
+
+        </div>
+        </form>
+
+  </section>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="tologin()">Login</button>
+    <button mat-button mat-dialog-close>skip </button>
+  </mat-dialog-actions>
+  </section>
+</div>

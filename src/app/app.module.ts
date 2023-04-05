@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'primeng/carousel';
 import { MatSelectModule } from '@angular/material/select';
 import { ButtonModule } from 'primeng/button';
+import { ToastrModule } from 'ngx-toastr';
 import { MatRadioModule } from '@angular/material/radio';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { MatCardModule } from '@angular/material/card';
@@ -28,6 +29,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { CheckoutComponent } from './Dialog/checkout/checkout.component';
 import { AdminComponent } from './admin/admin.component';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +39,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     LoginComponent,
     CheckoutComponent,
     AdminComponent,
+    MyOrdersComponent,
   ],
   imports: [
     MatBadgeModule,
@@ -47,6 +50,10 @@ import { MatBadgeModule } from '@angular/material/badge';
     HttpClientModule,
     BrowserModule,
     MatChipsModule,
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      positionClass: 'toast-top-right',
+    }),
     MatInputModule,
     MatMenuModule,
     MatIconModule,

@@ -15,6 +15,9 @@ btn-primary {
 ::-webkit-scrollbar {
   display: none;
 }
+.butWidth{
+  width: 172px;
+}
 .nodata{
   background-image: url('../../assets/images/NoData.jpg');
     background-repeat: no-repeat;
@@ -45,3 +48,5 @@ btn-primary {
   background-size: 351px 151px;
   min-height: 134px;
 }
+
+

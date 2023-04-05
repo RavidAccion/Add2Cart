@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import {
   FormBuilder,
   FormGroup,
@@ -15,17 +16,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  forLogin = true;
+  UserId: any;
   login: any = FormGroup;
+  registerform: any = FormGroup;
   userlist: any;
   constructor(
     private formBuilder: FormBuilder,
     private Api: ApiService,
     private router: Router,
-    private dialogRef: MatDialogRef<LoginComponent>
+    private dialogRef: MatDialogRef<LoginComponent>,
+    private toastrService: ToastrService
   ) {}
   ngOnInit() {
     this.getUserdata();
     this.createForm();
+    this.registerForm();
   }
   createForm() {
     this.login = this.formBuilder.group({
@@ -33,7 +39,20 @@ export class LoginComponent {
       password: ['', Validators.required],
     });
   }
+  registerForm() {
+    this.registerform = this.formBuilder.group({
+      name: ['', Validators.required],
+      phone: ['', Validators.required],
+      password: ['', Validators.required],
+      email: ['', Validators.required],
+      state: ['', Validators.required],
+      city: ['', Validators.required],
+      pin: ['', Validators.required],
+      landmark: ['', Validators.required],
+    });
+  }
   getUserdata() {
+    this.UserId = localStorage.getItem('UserId');
     this.Api.getUserData().subscribe((res) => {
       this.userlist = res;
       console.log(this.userlist);
@@ -45,15 +64,45 @@ export class LoginComponent {
     console.log(this.login.value);
     Object.keys(this.userlist).forEach((key) => {
       if (
-        this.userlist[key].username === this.login.value.username &&
-        this.userlist[key].user_password === this.login.value.password
+        this.userlist[key].name === this.login.value.username &&
+        this.userlist[key].password === this.login.value.password
       ) {
-        localStorage.setItem('UserId', this.userlist[key].userid);
+        localStorage.setItem('UserId', this.userlist[key].customer_id);
         localStorage.setItem('isLoggedIn', 'yes');
         this.dialogRef.close();
+        this.toastrService.success('', 'Successfully Logged In', {
+          positionClass: 'toast-top-right',
+        });
       } else {
         console.log('wrong Password');
+        this.toastrService.warning('', 'Invalid Credentials', {
+          positionClass: 'toast-top-right',
+        });
       }
     });
+  }
+  registerdata() {
+    console.log(this.registerform.value);
+    var CustomerData = {
+      customer_id: 0,
+      email: this.registerform.value.email,
+      password: this.registerform.value.password,
+      name: this.registerform.value.name,
+      state: this.registerform.value.state,
+      city: this.registerform.value.city,
+      landmark: this.registerform.value.landmark,
+      phone: this.registerform.value.phone,
+      pin: this.registerform.value.pin,
+    };
+    console.log(CustomerData);
+    this.Api.createCustomer(CustomerData).subscribe((res) => {
+      console.log('data response1', res);
+    });
+  }
+  register() {
+    this.forLogin = false;
+  }
+  tologin() {
+    this.forLogin = true;
   }
 }

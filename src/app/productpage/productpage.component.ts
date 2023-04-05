@@ -137,6 +137,8 @@ export class ProductpageComponent {
   addToCart(item: any) {
     if (this.firstTime == null) {
       const dialogRef = this.dialog.open(LoginComponent, {
+        width: '600px',
+        height: '430px',
         disableClose: true,
       });
       dialogRef.afterClosed().subscribe((result) => {
@@ -150,14 +152,15 @@ export class ProductpageComponent {
       console.log(item);
       var data = {
         id: 0,
-        user_id: this.UserId,
+        customer_id: JSON.parse(this.UserId),
         product_name: item.product_name,
+        product_id: item.id,
         price: item.price,
         product_description: item.product_description,
         category: item.category,
         product_stock: item.stock,
       };
-
+      console.log(data);
       this.Api.postCartdatas(data).subscribe((res) => {
         console.log('data response1', res);
         this.cartitems = res;
@@ -166,7 +169,13 @@ export class ProductpageComponent {
       console.log('already logged in', data);
     }
   }
-
+  deleteCartItems(data: any) {
+    console.log(data.id);
+    var id = data.id;
+    this.Api.deleteCartItem(id).subscribe();
+    debugger;
+    this.getCartData();
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open(CheckoutComponent, {
       disableClose: true,

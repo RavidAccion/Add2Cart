@@ -81,12 +81,23 @@
                   </div>
                   <p class="text-success">Free shipping</p>
                   <br>
+
                   <p>
-                    <a  class="btn btn-primary btn-block" (click)="addToCart(item)"> Add To cart </a>
+
+<a> <button class="butWidth" mat-raised-button color="primary"(click)="addToCart(item)">Add To Cart
+
+</button>
+</a>
+
+<a> <button class="butWidth mt-2" mat-raised-button color="accent" >Add To Wish List
+
+</button>
+</a>
+                    <!-- <a  class="btn btn-primary btn-block" (click)="addToCart(item)"> Add To cart </a> -->
                       <!-- <a  class="btn btn-primary btn-block" (click)="cartData(item)"> Add To cart </a> -->
-                      <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i>
+                      <!-- <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i>
                           <span class="text">Add to wishlist</span>
-                      </a>
+                      </a> -->
                   </p>
               </div>
           </aside>
@@ -140,7 +151,7 @@
                       </div>
                       <div class="col-3">
                          <a><span><mat-icon style="color:rgb(1, 1, 1)">add_box</mat-icon></span>
-                          <!-- <span (click)="deleteCartItems(data)"><mat-icon style="color:red;"  >delete</mat-icon></span>  -->
+                          <span (click)="deleteCartItems(data)"><mat-icon style="color:red;"  >delete</mat-icon></span>
                           </a>
                       </div>
                     </div>

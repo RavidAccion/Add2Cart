@@ -36,6 +36,7 @@
 </div>
 </div>
 <div class="row mt-3">
+  <hr>
   <div class="col-md-5"></div>
   <div class="col-md-3">
     <h6>Discount </h6>
@@ -47,6 +48,7 @@
   </div>
 </div>
 <div class="row mt-3">
+  <hr>
   <div class="col-md-5"></div>
   <div class="col-md-3">
     <h6>Amount Payable</h6>
@@ -83,37 +85,24 @@
 <hr>
 <h1 mat-dialog-title class="text-center" style="color:rgb(159, 19, 19);    font-weight: 700;">Address Details</h1>
 <div class="example-container text-center">
-  <form [formGroup]="address" (ngSubmit)="onSubmit()">
-    <div class="form-group">
 
-
-
-        <mat-form-field floatLabel="never" class="form-element ">
-          <input type="text" matInput placeholder="name" formControlName="name">
-        </mat-form-field>
-        <mat-form-field floatLabel="never" class="form-element ml-5">
-          <input type="text" matInput placeholder="phone" formControlName="phone">
-        </mat-form-field>
-        <mat-form-field floatLabel="never" class="form-element">
-          <input type="text" matInput placeholder="state" formControlName="state">
-        </mat-form-field>
-        <mat-form-field floatLabel="never" class="form-element  ml-5">
-          <input type="text" matInput placeholder="city" formControlName="city">
-        </mat-form-field>
-        <mat-form-field  floatLabel="never" class="form-element ">
-          <input type="text" matInput placeholder="pin" formControlName="pin">
-        </mat-form-field>
-        <mat-form-field floatLabel="never" class="form-element ml-5">
-          <input type="text" matInput placeholder="landmark" formControlName="landmark">
-        </mat-form-field>
-        <div class="form-element text-center">
-          <button mat-raised-button mat-dialog-close color="warn"  class="button" >Cancel</button>
-          <button mat-raised-button color="primary" type="submit" class="button  ml-5" >Place Order</button>
-
-        </div>
-      </div>
-      </form>
+  <div class="row ">
+    <div class="col-md-5">
+      <h5>Shipping Address</h5>
+    </div>
+    <div class="col-md-7">
+      <mat-card style="    width: max-content;
+      ">
+        <mat-card-content>{{address}}</mat-card-content>
+      </mat-card>
+    </div>
+    </div>
 </div>
-<div mat-dialog-actions>
-  <!-- <button mat-button mat-dialog-close>Close</button> -->
+<div mat-dialog-actions class="buttonEnd">
+  <div class="example-button-row ">
+    <button mat-raised-button mat-dialog-close color="accent">Cancel</button>
+    <button mat-raised-button type="submit" class="ml-4" color="primary" (click)="onSubmit()">Buy</button>
+
+
+  </div>
 </div>
