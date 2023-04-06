@@ -22,6 +22,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { MatSelectModule } from '@angular/material/select';
 import { ButtonModule } from 'primeng/button';
 import { ToastrModule } from 'ngx-toastr';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { MatCardModule } from '@angular/material/card';
@@ -44,6 +45,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
   imports: [
     MatBadgeModule,
     MatCardModule,
+    MatProgressBarModule,
     IvyCarouselModule,
     MatSelectModule,
     MatRadioModule,

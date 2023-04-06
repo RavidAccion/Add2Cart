@@ -20,7 +20,7 @@
   <button mat-menu-item [routerLink]="['']">Upload Plan</button>
   <button mat-menu-item [routerLink]="['']">Pending Plans</button>
 </mat-menu>
-<button mat-icon-button matTooltip="My Account"  [matMenuTriggerFor]="createPlan">
+<button mat-icon-button matTooltip="My Orders"  (click)="goToOrders()">
   <mat-icon>shopping_basket</mat-icon>
 </button>
   <button mat-icon-button matTooltip="My Account" >

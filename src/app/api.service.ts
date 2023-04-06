@@ -42,7 +42,9 @@ export class ApiService {
   craeteProduct(data: any) {
     return this.http.post(this.url + '/api/Product/create', data);
   }
-
+  getOrderById(id: any) {
+    return this.http.get(this.url + `/api/Order/${id}`);
+  }
   craeteCategory(data: any) {
     return this.http.post(this.url + '/api/category/create', data);
   }
@@ -53,5 +55,9 @@ export class ApiService {
 
   postCartdatas(data: any) {
     return this.http.post('https://localhost:7228/api/Cart/create', data);
+  }
+
+  deleteCartAfterOrder(id: any) {
+    return this.http.delete(this.url + `/api/Order/cart/${id}/delete`);
   }
 }

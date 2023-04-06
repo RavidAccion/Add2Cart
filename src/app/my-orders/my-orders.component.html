@@ -1,1 +1,50 @@
-<p>my-orders works!</p>
+<section class="pad">
+  <button mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon"
+   (click)="toPrevious()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+</section>
+<section *ngIf="noData==false">
+  <h2 class="text-center">NO DATA FOUND</h2>
+  <h5 class="text-center text-warning">Please Login To View Your Orders</h5>
+</section>
+<section *ngIf="noData==true">
+ <div >
+  <div class="row">
+    <div class="col-6"*ngFor="let item of OrdrList">
+ <mat-card class="example-card m-5">
+    <!-- <mat-card-header> -->
+      <!-- <mat-card-title-group> -->
+        <div class="row">
+          <div class="col-5">
+            <h6>
+             Order Id <span class="mx-4">:</span> {{item.customer_id}}
+            </h6><h5> Product <span class="mx-4">:</span>Shiba Inu</h5>
+            <mat-card-subtitle>Price <span class="mx-4">:</span>{{item.total_price}}</mat-card-subtitle>
+            <mat-card-subtitle>Order date <span class="mx-4">:</span>{{item.placed_on |date}}</mat-card-subtitle>
+            <mat-card-subtitle>Status <span class="mx-4">:</span>{{item.order_status}}</mat-card-subtitle></div>
+          <div class="col-2"></div>
+          <div class="col-5">
+            <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+            alt="Image of a Shiba Inu">
+          </div>
+        </div>
+      <!-- </mat-card-title-group> -->
+    <!-- </mat-card-header> -->
+    <mat-card-content>
+      {{item.address}}
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-progress-bar *ngIf="item.order_status=='processed'" color="accent" mode="determinate" value="50"></mat-progress-bar>
+      <mat-progress-bar *ngIf="item.order_status=='placed'" mode="determinate" value="25"></mat-progress-bar>
+      <mat-progress-bar *ngIf="item.order_status=='out for '"  mode="determinate" value="75"></mat-progress-bar>
+      <mat-progress-bar *ngIf="item.order_status=='cancelled'" color="warn" mode="determinate" value="100"></mat-progress-bar>
+      <mat-progress-bar *ngIf="item.order_status=='delivered'" mode="determinate" value="100"></mat-progress-bar>
+
+    </mat-card-footer>
+  </mat-card>
+  </div>
+</div>
+</div>
+</section>

@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { ApiService } from '../.././api.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import {
   FormBuilder,
   FormGroup,
@@ -26,7 +28,9 @@ export class CheckoutComponent {
   offers = [{ name: 'Debit Card' }, { name: 'Credit Card' }, { name: 'C O D' }];
 
   constructor(
+    private router: Router,
     private Api: ApiService,
+    private toastrService: ToastrService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<CheckoutComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any = [],
@@ -78,18 +82,29 @@ export class CheckoutComponent {
   }
   onSubmit() {
     const totalPrice = localStorage.getItem('totalPrice');
+    console.log(this.data);
     this.data.forEach((element: any) => {
       var data = element;
       var OrderDetails = {
         cus_Id: this.UserId,
         address: this.address,
-        total_price: totalPrice,
+        total_price: element.price,
         Product_id: element.product_id,
         order_status: 'placed',
       };
       console.log(OrderDetails);
       this.Api.createOrder(OrderDetails).subscribe((res) => {
         console.log('data response1', res);
+        this.dialogRef.close();
+        this.router.navigate(['']);
+        this.toastrService.success('', 'Order Placed Successfully', {
+          positionClass: 'toast-top-right',
+        });
+      });
+
+      var id = element.id;
+      this.Api.deleteCartAfterOrder(id).subscribe((res) => {
+        console.log('cart deleting');
       });
     });
   }

@@ -43,6 +43,9 @@ export class HeaderComponent {
     this.toggleSearch = false;
     console.log(this.toggleSearch);
   }
+  goToOrders() {
+    this.router.navigate(['orders']);
+  }
   logout() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('UserId');
