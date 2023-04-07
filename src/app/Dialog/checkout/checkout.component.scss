@@ -5,6 +5,11 @@
   max-height: 460px;
   overflow: scroll;
 }
+::ng-deep .redNoMatch
+{
+  color:white;
+  background:  #066619 !important;
+}
 ::-webkit-scrollbar {
   display: none !important;
 }

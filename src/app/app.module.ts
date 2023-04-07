@@ -31,6 +31,7 @@ import { CheckoutComponent } from './Dialog/checkout/checkout.component';
 import { AdminComponent } from './admin/admin.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
     MyOrdersComponent,
   ],
   imports: [
+    MatSnackBarModule,
     MatBadgeModule,
     MatCardModule,
     MatProgressBarModule,

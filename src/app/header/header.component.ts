@@ -1,17 +1,23 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '.././api.service';
+import { Subscription } from 'rxjs';
+import { ProductpageComponent } from '../productpage/productpage.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  @ViewChild(ProductpageComponent)
+  Component!: ProductpageComponent;
   @ViewChild('searchbar') searchbar!: ElementRef;
   searchText = '';
   CartLength: any;
   cartitems: any;
+  sharedData: any;
   toggleSearch: boolean = false;
+  subscriptionName: any = Subscription;
   // constructor(private http: Http) { }
 
   constructor(public router: Router, private Api: ApiService) {}
@@ -19,11 +25,6 @@ export class HeaderComponent {
     this.getCount();
   }
   openSearch() {
-    // this.toggleSearch = true;
-    // this.toggleSearch != this.toggleSearch;
-
-    // this.searchbar.nativeElement.focus();
-
     if (this.toggleSearch == true) {
       this.toggleSearch = false;
     } else if (this.toggleSearch == false) {

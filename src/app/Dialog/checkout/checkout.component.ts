@@ -3,6 +3,11 @@ import { ApiService } from '../.././api.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+import {
   FormBuilder,
   FormGroup,
   FormControl,
@@ -26,8 +31,10 @@ export class CheckoutComponent {
   selectable: boolean = true;
 
   offers = [{ name: 'Debit Card' }, { name: 'Credit Card' }, { name: 'C O D' }];
-
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   constructor(
+    private _snackBar: MatSnackBar,
     private router: Router,
     private Api: ApiService,
     private toastrService: ToastrService,
@@ -91,14 +98,19 @@ export class CheckoutComponent {
         total_price: element.price,
         Product_id: element.product_id,
         order_status: 'placed',
+        stock: 1,
       };
       console.log(OrderDetails);
       this.Api.createOrder(OrderDetails).subscribe((res) => {
         console.log('data response1', res);
         this.dialogRef.close();
         this.router.navigate(['']);
-        this.toastrService.success('', 'Order Placed Successfully', {
-          positionClass: 'toast-top-right',
+
+        this._snackBar.open('Order Placed Successfully', '', {
+          duration: 2000,
+          panelClass: ['redNoMatch'],
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
         });
       });
 

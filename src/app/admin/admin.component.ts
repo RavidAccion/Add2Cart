@@ -7,8 +7,16 @@ import { ApiService } from '../api.service';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent {
+  statuslist: any = [
+    { name: 'placed' },
+    { name: 'processed' },
+    { name: 'out for ' },
+    { name: 'cancelled' },
+    { name: 'delivered' },
+  ];
   productForm: any = FormGroup;
   categoryForm: any = FormGroup;
+  orderstatusForm: any = FormGroup;
   deletecategory: any = FormGroup;
   categorylist: any;
   deleteForm: boolean = false;
@@ -19,6 +27,7 @@ export class AdminComponent {
     this.categoryFormBuild();
     this.deleteCatformBuild();
     this.getData();
+    this.orderStatusFormBuild();
   }
   deleteCatformBuild(): void {
     this.deletecategory = this.formBuilder.group({
@@ -39,6 +48,13 @@ export class AdminComponent {
       product_description: ['', [Validators.required]],
       category: ['', [Validators.required]],
       stock: ['', [Validators.required]],
+    });
+  }
+
+  orderStatusFormBuild() {
+    this.orderstatusForm = this.formBuilder.group({
+      order_id: ['', [Validators.required]],
+      status: ['', [Validators.required]],
     });
   }
   getData() {
@@ -63,7 +79,16 @@ export class AdminComponent {
       console.log(this.categorylist);
     });
   }
-
+  statusData() {
+    console.log(this.orderstatusForm.value);
+    var data = {
+      id: this.orderstatusForm.value.order_id,
+      status: this.orderstatusForm.value.status,
+    };
+    this.Api.updateOrder(data).subscribe((res) => {
+      console.log(res);
+    });
+  }
   categoryData() {
     var data = {
       category_name: this.categoryForm.value.category_name,

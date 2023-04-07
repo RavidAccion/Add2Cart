@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   url: any = 'https://localhost:7228';
+
   constructor(private http: HttpClient) {}
 
   createCustomer(CustomerData: any) {
@@ -19,9 +21,10 @@ export class ApiService {
   getCartData() {
     return this.http.get(this.url + '/api/Cart/get');
   }
-  getCartDataById(id: any) {
+  getCartDataById(id: any): Observable<any> {
     return this.http.get(this.url + `/api/Cart/${id}`);
   }
+
   deleteCartItem(id: any) {
     return this.http.delete(this.url + `/api/Cart/${id}/delete`);
   }
@@ -37,6 +40,9 @@ export class ApiService {
   }
   createOrder(data: any) {
     return this.http.post(this.url + '/api/Order/create', data);
+  }
+  updateOrder(data: any) {
+    return this.http.put(this.url + '/api/Order/edit', data);
   }
 
   craeteProduct(data: any) {

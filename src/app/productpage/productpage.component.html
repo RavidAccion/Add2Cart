@@ -70,6 +70,9 @@
                       <div class="label-rating">7/10</div>
                   </div>
                   <p> {{item.product_description }}</p>
+                  <hr>
+                  <p *ngIf="item.stock >0" style="color:rgb(0, 0, 0)">Only <span class="stock">{{item.stock }} </span>Items Left</p>
+                  <p *ngIf="item.stock ==0" style="color:rgb(227, 17, 17)">NO STOCKS AVAILABLE</p>
               </div>
           </div>
           <aside class="col-sm-3">
@@ -84,7 +87,7 @@
 
                   <p>
 
-<a> <button class="butWidth" mat-raised-button color="primary"(click)="addToCart(item)">Add To Cart
+<a> <button [disabled]="item.stock ==0" class="butWidth" mat-raised-button color="primary"(click)="addToCart(item)">Add To Cart
 
 </button>
 </a>

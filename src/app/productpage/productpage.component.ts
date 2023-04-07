@@ -9,6 +9,11 @@ import {
 } from '@angular/material/dialog';
 import { CheckoutComponent } from '../Dialog/checkout/checkout.component';
 import { LoginComponent } from '../Dialog/login/login.component';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-productpage',
   templateUrl: './productpage.component.html',
@@ -21,6 +26,7 @@ export class ProductpageComponent {
   productlist: any;
   nodataToDisplay: any;
   totalPrice: any;
+  sharedData: any;
   cartdata: any = [];
   notLoggedIn: any;
   cartitems: any = [];
@@ -28,7 +34,10 @@ export class ProductpageComponent {
   noData: any;
   noUser: boolean = false;
   UserId: any;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   constructor(
+    private _snackBar: MatSnackBar,
     public router: Router,
     public location: Location,
     private Api: ApiService,
@@ -164,6 +173,12 @@ export class ProductpageComponent {
       this.Api.postCartdatas(data).subscribe((res) => {
         console.log('data response1', res);
         this.cartitems = res;
+        this._snackBar.open('Product Added', 'To The cart', {
+          duration: 2000,
+          panelClass: ['greenNoMatch'],
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
         this.getCartData();
       });
       console.log('already logged in', data);
@@ -171,10 +186,18 @@ export class ProductpageComponent {
   }
   deleteCartItems(data: any) {
     console.log(data.id);
-    var id = data.id;
-    this.Api.deleteCartItem(id).subscribe();
     debugger;
-    this.getCartData();
+    var id = data.id;
+    this.Api.deleteCartItem(id).subscribe((res) => {
+      console.log(res);
+      this._snackBar.open('Product Removed From cart', '', {
+        duration: 2000,
+        panelClass: ['redNoMatch'],
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+      });
+      this.getCartData();
+    });
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(CheckoutComponent, {

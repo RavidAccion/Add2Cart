@@ -21,19 +21,20 @@
             <h6>
              Order Id <span class="mx-4">:</span> {{item.customer_id}}
             </h6><h5> Product <span class="mx-4">:</span>Shiba Inu</h5>
-            <mat-card-subtitle>Price <span class="mx-4">:</span>{{item.total_price}}</mat-card-subtitle>
+            <mat-card-subtitle>Price <span class="mx-4">:</span>₹ {{item.total_price}}</mat-card-subtitle>
             <mat-card-subtitle>Order date <span class="mx-4">:</span>{{item.placed_on |date}}</mat-card-subtitle>
+            <mat-card-subtitle>Deivery date <span class="mx-4">:</span>{{item.delivery |date}}</mat-card-subtitle>
             <mat-card-subtitle>Status <span class="mx-4">:</span>{{item.order_status}}</mat-card-subtitle></div>
           <div class="col-2"></div>
           <div class="col-5">
-            <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+            <img mat-card-md-image src="assets/images/items/2.jpg"
             alt="Image of a Shiba Inu">
           </div>
         </div>
       <!-- </mat-card-title-group> -->
     <!-- </mat-card-header> -->
     <mat-card-content>
-      {{item.address}}
+     <h5>Address<span class="ml-3">:</span> {{item.address}}</h5>
     </mat-card-content>
     <mat-card-footer>
       <mat-progress-bar *ngIf="item.order_status=='processed'" color="accent" mode="determinate" value="50"></mat-progress-bar>
