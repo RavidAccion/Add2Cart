@@ -18,6 +18,7 @@ export class MyOrdersComponent {
     var id = localStorage.getItem('UserId');
     this.Api.getOrderById(id).subscribe((res) => {
       this.OrdrList = res;
+      console.log(this.OrdrList);
       if (this.OrdrList.length == 0) {
         this.noData = false;
       } else {

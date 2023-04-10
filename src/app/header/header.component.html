@@ -6,35 +6,35 @@
   <span class="toolbar-item-spacer"></span>
 
   <span class="toolbar-item-spacer"></span>
-  <span class="px-2">Welcome</span><span>{{""}} </span>
+  <span class="px-2">Welcome<span class="ml-2">{{userName}}</span> </span>
   <button mat-icon-button  (click)="openSearch()">
     <mat-icon>search</mat-icon>
 </button>
-  <button mat-icon-button matTooltip="My Account"
-   #createPlanmenuTrigger="matMenuTrigger" [matMenuTriggerFor]="createPlan">
 
-   <mat-icon>view_module</mat-icon>
-</button>
-<mat-menu #createPlan="matMenu">
-  <button mat-menu-item [routerLink]="['']">Manual Plan</button>
-  <button mat-menu-item [routerLink]="['']">Upload Plan</button>
-  <button mat-menu-item [routerLink]="['']">Pending Plans</button>
-</mat-menu>
+
 <button mat-icon-button matTooltip="My Orders"  (click)="goToOrders()">
   <mat-icon>shopping_basket</mat-icon>
 </button>
   <button mat-icon-button matTooltip="My Account" >
     <mat-icon matBadge={{CartLength}} matBadgeColor="warn">shopping_cart</mat-icon>
 </button>
+<button *ngIf="login==false" mat-icon-button matTooltip="My Account" (click)="goToProfile()" >
+  <mat-icon>person_pin</mat-icon>
+</button>
   <button mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="userAccountMenu">
-      <mat-icon>person_pin</mat-icon>
+      <mat-icon>settings</mat-icon>
   </button>
 
   <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
 
-      <button mat-menu-item (click)="logout()">
+      <button *ngIf="login==false" mat-menu-item (click)="logout()">
+
       <mat-icon>exit_to_app</mat-icon>Logout
       </button>
+      <button *ngIf="login" mat-menu-item (click)="logIn()">
+
+        <mat-icon>login</mat-icon>LogIn
+        </button>
   </mat-menu>
 </mat-toolbar>
 <mat-toolbar style="background-color: blue;

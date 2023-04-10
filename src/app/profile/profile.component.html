@@ -1,0 +1,58 @@
+<section class="pad">
+  <button mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon"
+   (click)="toPrevious()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+</section>
+<mat-progress-bar mode="buffer"  color="accent"></mat-progress-bar>
+<mat-card class="example-card m-4">
+
+   <div class="row">
+    <div class="col-2 colBG">
+      <h3>Name</h3>
+      <h5>E-Mail</h5>
+      <h5>Phone</h5>
+      <h5>Address</h5>
+
+    </div>
+    <div class="col-1 colBG">
+      <h3>:</h3>
+      <h5>:</h5>
+      <h5>:</h5>
+      <h5>:</h5>
+
+    </div>
+    <div class="col-5 colBG">
+      <h3>{{Data[0].name}}</h3>
+      <h5>{{Data[0].email}}</h5>
+      <h5>{{Data[0].phone}}</h5>
+      <h5>{{Data[0].landmark+","+Data[0].city+","+Data[0].state+","+Data[0].pin}}</h5>
+
+    </div>
+    <div class="col-4">
+      <img  src="../../assets/images/shopping-cart-gab0ba9e99_1280.png" class="forImage">
+    </div>
+   </div>
+
+  <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+  <mat-card-content>
+
+  </mat-card-content>
+  <mat-card-actions class="text-center">
+    <button mat-button><mat-icon style="color:red">favorite</mat-icon>LIKE</button>
+    <button mat-button><mat-icon>share</mat-icon>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+<mat-progress-bar mode="buffer"  color="accent"></mat-progress-bar>
+
+<!-- <div class="row ">
+<div >
+  <div class="col-4 " >
+    <mat-card *ngFor="let item of profileOptions">
+      <mat-card-content>Simple card</mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+</div> -->

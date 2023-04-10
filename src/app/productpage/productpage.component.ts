@@ -39,6 +39,7 @@ export class ProductpageComponent {
   constructor(
     private _snackBar: MatSnackBar,
     public router: Router,
+
     public location: Location,
     private Api: ApiService,
     public dialog: MatDialog
@@ -186,7 +187,6 @@ export class ProductpageComponent {
   }
   deleteCartItems(data: any) {
     console.log(data.id);
-    debugger;
     var id = data.id;
     this.Api.deleteCartItem(id).subscribe((res) => {
       console.log(res);

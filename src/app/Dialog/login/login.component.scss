@@ -6,6 +6,16 @@
   background-size: 100%;
   background-repeat: no-repeat;
 }
+::ng-deep .redNoMatch
+{
+  color:white;
+  background: #f43636 !important;
+}
+::ng-deep .greenNoMatch
+{
+  color:white;
+  background: #066619 !important;
+}
 .optionend{
   justify-content: end;
 }

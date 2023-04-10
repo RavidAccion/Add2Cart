@@ -22,6 +22,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class CheckoutComponent {
   totalPrice: any;
+  spin: boolean = false;
   userlist: any;
   datalist: any;
   address: any = FormGroup;
@@ -68,6 +69,7 @@ export class CheckoutComponent {
     });
   }
   getPrice() {
+    this.spin = false;
     this.UserId = localStorage.getItem('UserId');
     this.lengt = this.data.length;
     const _data = localStorage.getItem('totalPrice');
@@ -88,6 +90,7 @@ export class CheckoutComponent {
     });
   }
   onSubmit() {
+    this.spin = true;
     const totalPrice = localStorage.getItem('totalPrice');
     console.log(this.data);
     this.data.forEach((element: any) => {

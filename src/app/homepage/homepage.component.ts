@@ -21,6 +21,7 @@ export class HomepageComponent {
   ];
 
   images = [
+    { path: '../../assets/images/amazbanner.jpg' },
     { path: '../../assets/images/amazon1.jpg' },
     { path: '../../assets/images/amazon4.jpg' },
     { path: '../../assets/images/flip2.webp' },

@@ -12,15 +12,20 @@
 <section *ngIf="noData==true">
  <div >
   <div class="row">
+    <h3 class="text-center">ORDERS</h3>
+    <!-- <mat-tab-group>
+      <mat-tab label="First"> Content 1 </mat-tab>
+      <mat-tab label="Second"> Content 2 </mat-tab>
+      <mat-tab label="Third"> Content 3 </mat-tab>
+    </mat-tab-group> -->
     <div class="col-6"*ngFor="let item of OrdrList">
- <mat-card class="example-card m-5">
-    <!-- <mat-card-header> -->
-      <!-- <mat-card-title-group> -->
+ <mat-card class="example-card m-5" >
+
         <div class="row">
           <div class="col-5">
             <h6>
-             Order Id <span class="mx-4">:</span> {{item.customer_id}}
-            </h6><h5> Product <span class="mx-4">:</span>Shiba Inu</h5>
+             Order Id <span class="mx-4">:</span> {{item.orderid}}
+            </h6><h5> Product <span class="mx-4">:</span>{{item.product_name}}</h5>
             <mat-card-subtitle>Price <span class="mx-4">:</span>₹ {{item.total_price}}</mat-card-subtitle>
             <mat-card-subtitle>Order date <span class="mx-4">:</span>{{item.placed_on |date}}</mat-card-subtitle>
             <mat-card-subtitle>Deivery date <span class="mx-4">:</span>{{item.delivery |date}}</mat-card-subtitle>
@@ -31,8 +36,7 @@
             alt="Image of a Shiba Inu">
           </div>
         </div>
-      <!-- </mat-card-title-group> -->
-    <!-- </mat-card-header> -->
+
     <mat-card-content>
      <h5>Address<span class="ml-3">:</span> {{item.address}}</h5>
     </mat-card-content>

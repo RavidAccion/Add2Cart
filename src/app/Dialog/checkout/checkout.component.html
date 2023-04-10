@@ -102,6 +102,11 @@
 <div mat-dialog-actions class="buttonEnd">
   <div class="example-button-row ">
     <button mat-raised-button mat-dialog-close color="accent">Cancel</button>
-    <button mat-raised-button type="submit" class="ml-4" color="primary" (click)="onSubmit()"> Buy Now</button>
+    <!-- <button mat-raised-button type="submit" class="ml-4" color="primary" (click)="onSubmit()"><span><mat-spinner color="accent" diameter="20" >Buy Now</mat-spinner></span> </button> -->
+    <button mat-raised-button type="submit" class="ml-4" color="primary" (click)="onSubmit()">
+      Place Order
+          <mat-icon><mat-spinner *ngIf="spin" color="accent" diameter="20">
+      </mat-spinner></mat-icon>
+    </button>
   </div>
 </div>

@@ -9,6 +9,11 @@ import {
 } from '@angular/forms';
 import { ApiService } from '../.././api.service';
 import { Router } from '@angular/router';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -21,12 +26,15 @@ export class LoginComponent {
   login: any = FormGroup;
   registerform: any = FormGroup;
   userlist: any;
+  invalidCredentials: any = false;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   constructor(
     private formBuilder: FormBuilder,
     private Api: ApiService,
     private router: Router,
     private dialogRef: MatDialogRef<LoginComponent>,
-    private toastrService: ToastrService
+    private _snackBar: MatSnackBar
   ) {}
   ngOnInit() {
     this.getUserdata();
@@ -68,16 +76,16 @@ export class LoginComponent {
         this.userlist[key].password === this.login.value.password
       ) {
         localStorage.setItem('UserId', this.userlist[key].customer_id);
+        localStorage.setItem('Username', this.userlist[key].name);
         localStorage.setItem('isLoggedIn', 'yes');
+        this.invalidCredentials = false;
         this.dialogRef.close();
-        this.toastrService.success('', 'Successfully Logged In', {
-          positionClass: 'toast-top-right',
-        });
-      } else {
+      } else if (
+        this.userlist[key].name !== this.login.value.username ||
+        this.userlist[key].password !== this.login.value.password
+      ) {
         console.log('wrong Password');
-        this.toastrService.warning('', 'Invalid Credentials', {
-          positionClass: 'toast-top-right',
-        });
+        this.invalidCredentials = true;
       }
     });
   }
