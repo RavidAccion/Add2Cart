@@ -71,14 +71,23 @@ export class LoginComponent {
 
     console.log(this.login.value);
     Object.keys(this.userlist).forEach((key) => {
+      debugger;
       if (
         this.userlist[key].name === this.login.value.username &&
         this.userlist[key].password === this.login.value.password
       ) {
         localStorage.setItem('UserId', this.userlist[key].customer_id);
+        localStorage.setItem('UserType', this.userlist[key].usertype);
         localStorage.setItem('Username', this.userlist[key].name);
         localStorage.setItem('isLoggedIn', 'yes');
         this.invalidCredentials = false;
+        debugger;
+        if (this.userlist[key].usertype == 'admin') {
+          this.router.navigate(['admin']);
+          this.dialogRef.close();
+        } else {
+          this.dialogRef.close();
+        }
         this.dialogRef.close();
       } else if (
         this.userlist[key].name !== this.login.value.username ||
@@ -101,6 +110,7 @@ export class LoginComponent {
       landmark: this.registerform.value.landmark,
       phone: this.registerform.value.phone,
       pin: this.registerform.value.pin,
+      usertype: 'user',
     };
     console.log(CustomerData);
     this.Api.createCustomer(CustomerData).subscribe((res) => {

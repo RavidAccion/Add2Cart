@@ -1,3 +1,10 @@
+<section class="pad">
+  <button mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon"
+   (click)="toPrevious()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+</section>
 <section class="m-2">
 <div class="row mt-3">
   <div class="col-4">
@@ -82,7 +89,7 @@
     </mat-card>
   </div>
   <div class="col-4">
-    <mat-card>
+    <mat-card class="cardHeight">
       <mat-card-content *ngIf ="deleteForm==false">
 
         <h4 class="text-center" >Add Category
@@ -146,7 +153,7 @@
 
   </div>
   <div class="col-4">
-    <mat-card>
+    <mat-card class="cardHeight">
       <mat-card-content >
 
         <h4 class="text-center" >Order Status Update

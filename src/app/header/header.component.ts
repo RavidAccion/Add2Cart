@@ -25,6 +25,7 @@ export class HeaderComponent {
   cartitems: any;
   sharedData: any;
   Name: any;
+  userType: any;
   userName: any;
   toggleSearch: boolean = false;
   subscriptionName: any = Subscription;
@@ -48,6 +49,7 @@ export class HeaderComponent {
   }
   getCount() {
     this.firstTime = localStorage.getItem('isLoggedIn');
+    this.userType = localStorage.getItem('UserType');
     if (this.firstTime == null) {
       this.login = true;
     } else {
@@ -86,6 +88,12 @@ export class HeaderComponent {
   }
   goToProfile() {
     this.router.navigate(['profile']);
+  }
+  goToDashboard() {
+    this.router.navigate(['admin']);
+  }
+  goToHome() {
+    this.router.navigate(['']);
   }
   logout() {
     this.login = true;

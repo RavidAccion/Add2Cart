@@ -7,10 +7,15 @@
 
   <span class="toolbar-item-spacer"></span>
   <span class="px-2">Welcome<span class="ml-2">{{userName}}</span> </span>
-  <button mat-icon-button  (click)="openSearch()">
+  <!-- <button mat-icon-button  (click)="openSearch()">
     <mat-icon>search</mat-icon>
+</button> -->
+<button mat-icon-button matTooltip="My Orders"  (click)="goToHome()">
+  <mat-icon>home</mat-icon>
 </button>
-
+<button *ngIf="userType=='admin'" mat-icon-button matTooltip="My Orders"  (click)="goToDashboard()">
+  <mat-icon>store</mat-icon>
+</button>
 
 <button mat-icon-button matTooltip="My Orders"  (click)="goToOrders()">
   <mat-icon>shopping_basket</mat-icon>

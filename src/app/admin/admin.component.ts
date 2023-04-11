@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -20,7 +21,11 @@ export class AdminComponent {
   deletecategory: any = FormGroup;
   categorylist: any;
   deleteForm: boolean = false;
-  constructor(private formBuilder: FormBuilder, private Api: ApiService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    public location: Location,
+    private Api: ApiService
+  ) {}
 
   ngOnInit(): void {
     this.productFormBuild();
@@ -114,5 +119,9 @@ export class AdminComponent {
   }
   addCategory() {
     this.deleteForm = false;
+  }
+
+  toPrevious() {
+    this.location.back();
   }
 }

@@ -44,7 +44,7 @@
 
 
   <article class="card card-product-list" *ngFor="let item of productlist ">
-      <div class="row no-gutters">
+      <div class="row no-gutters mat-card">
           <aside class="col-md-3">
               <a href="#" class="img-wrap">
                   <span class="badge badge-danger"> NEW </span>
@@ -160,7 +160,9 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="row" *ngIf ="noData==false">
+                  <mat-progress-bar mode="buffer"  color="primary"></mat-progress-bar>
                   <section class="text-center mt-3">
                   <h6><div>Total Price : ₹{{totalPrice }}</div></h6>
                   </section>

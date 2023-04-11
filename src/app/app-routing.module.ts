@@ -7,12 +7,14 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AuthServiceService } from './auth-service.service';
 import { Router } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AuthServiceService],
   },
   {
     path: 'product',
@@ -27,6 +29,10 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthServiceService],
+  },
+  {
+    path: 'tasks',
+    component: TasksComponent,
   },
 ];
 
