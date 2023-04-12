@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { Location } from '@angular/common';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -21,7 +26,10 @@ export class AdminComponent {
   deletecategory: any = FormGroup;
   categorylist: any;
   deleteForm: boolean = false;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   constructor(
+    private _snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
     public location: Location,
     private Api: ApiService
@@ -83,6 +91,13 @@ export class AdminComponent {
       this.categorylist = res;
       console.log(this.categorylist);
     });
+    this._snackBar.open('New Product', 'Added', {
+      duration: 1000,
+      panelClass: ['succesColor'],
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+    this.productForm.reset();
   }
   statusData() {
     console.log(this.orderstatusForm.value);
@@ -93,6 +108,13 @@ export class AdminComponent {
     this.Api.updateOrder(data).subscribe((res) => {
       console.log(res);
     });
+    this._snackBar.open('Order Status Updated Successfully', '', {
+      duration: 500,
+      panelClass: ['succesColor'],
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+    this.orderstatusForm.reset();
   }
   categoryData() {
     var data = {
@@ -104,6 +126,13 @@ export class AdminComponent {
       this.categorylist = res;
       console.log(this.categorylist);
     });
+    this._snackBar.open('New Category', 'Added', {
+      duration: 500,
+      panelClass: ['succesColor'],
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+    this.categoryForm.reset();
   }
 
   categoryDeleteData() {
@@ -112,6 +141,13 @@ export class AdminComponent {
     this.Api.deleteCategory(id).subscribe((res) => {
       console.log(res);
     });
+    this._snackBar.open('Category Deleted From The DB', '', {
+      duration: 500,
+      panelClass: ['succesColor'],
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+    this.deletecategory.reset();
   }
 
   deleteCategory() {

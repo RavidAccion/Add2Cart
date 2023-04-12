@@ -2,6 +2,11 @@
   max-height: 55vh;
   overflow:scroll;
 }
+::ng-deep .succesColor
+{
+  color:white;
+  background:  #066619 !important;
+}
 ::-webkit-scrollbar {
   display: none;
 }
