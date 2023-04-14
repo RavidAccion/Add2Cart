@@ -89,6 +89,7 @@ export class ProductpageComponent {
     console.log(this.nodataToDisplay);
   }
 
+  //method to get the cart datas from the database
   getCartData() {
     var id = this.UserId;
     this.Api.getCartDataById(id).subscribe((res) => {
@@ -119,17 +120,23 @@ export class ProductpageComponent {
     this.categoryID = localStorage.getItem('ID');
     console.log(this.categoryID);
   }
+
+  //method to check weather the user is loged in or not , to show the products in cart
   checkUserId() {
     if (this.UserId == null) {
       this.noUser = true;
       console.log(this.noUser);
     }
   }
+
+  //method to display "login " in the cart card if the user is not logged in
   notLoggedIncart() {
     if (this.firstTime == null) {
       this.notLoggedIn = true;
     }
   }
+
+  //method gets the category list from database
   getbycategory(id: any) {
     console.log(id);
     localStorage.setItem('ID', id.id);
@@ -144,6 +151,8 @@ export class ProductpageComponent {
   //   // localStorage.setItem('Data', JSON.stringify(this.tableData));
   //   this.getCartData();
   // }
+
+  //method to add products to cart
   addToCart(item: any) {
     if (this.firstTime == null) {
       const dialogRef = this.dialog.open(LoginComponent, {
@@ -185,6 +194,8 @@ export class ProductpageComponent {
       console.log('already logged in', data);
     }
   }
+
+  //method to delete the cart items
   deleteCartItems(data: any) {
     console.log(data.id);
     var id = data.id;
@@ -199,6 +210,8 @@ export class ProductpageComponent {
       this.getCartData();
     });
   }
+
+  //method to open the checkout dialog box
   openDialog(): void {
     const dialogRef = this.dialog.open(CheckoutComponent, {
       disableClose: true,

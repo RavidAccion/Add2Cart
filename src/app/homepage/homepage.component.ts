@@ -46,6 +46,7 @@ export class HomepageComponent {
     let elems = document.querySelectorAll('.carousel');
   }
 
+  //method to get the category list to display in the cards
   getCategory() {
     this.Api.getCategoryData().subscribe((res) => {
       this.categorylist = res;
@@ -53,6 +54,7 @@ export class HomepageComponent {
     });
   }
 
+  //this method is to set id in trhe local
   toProduct(id: any) {
     console.log(id);
     localStorage.setItem('ID', id.id);
@@ -62,7 +64,7 @@ export class HomepageComponent {
     localStorage.setItem('ID', '0');
     this.router.navigate(['/product']);
   }
-
+  //method to open login dialog
   openDialog() {
     this.firstTime = localStorage.getItem('Token');
     if (this.firstTime != 'yes') {

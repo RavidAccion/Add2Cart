@@ -14,6 +14,7 @@ export class MyOrdersComponent {
   ngOnInit() {
     this.getOrders();
   }
+  //method to get orders data from api
   getOrders() {
     var id = localStorage.getItem('UserId');
     this.Api.getOrderById(id).subscribe((res) => {
@@ -26,7 +27,7 @@ export class MyOrdersComponent {
       }
     });
   }
-
+  //method to go to previous
   toPrevious() {
     this.location.back();
   }

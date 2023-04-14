@@ -36,6 +36,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthServiceService } from './auth-service.service';
 import { ProfileComponent } from './profile/profile.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { TasksComponent } from './tasks/tasks.component';
     TasksComponent,
   ],
   imports: [
+    MatTableModule,
     MatTabsModule,
     MatSnackBarModule,
     MatBadgeModule,

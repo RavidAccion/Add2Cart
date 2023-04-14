@@ -22,6 +22,8 @@ export class ProfileComponent {
   toPrevious() {
     this.location.back();
   }
+
+  //to get the users details from API
   getData() {
     var id = localStorage.getItem('UserId');
     this.Api.getUserDataById(id).subscribe((res) => {

@@ -16,10 +16,11 @@ export class AdminComponent {
   statuslist: any = [
     { name: 'placed' },
     { name: 'processed' },
-    { name: 'out for ' },
     { name: 'cancelled' },
     { name: 'delivered' },
   ];
+  OrderData: any;
+  redBG: any = false;
   productForm: any = FormGroup;
   categoryForm: any = FormGroup;
   orderstatusForm: any = FormGroup;
@@ -28,6 +29,7 @@ export class AdminComponent {
   deleteForm: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  displayedColumns: string[] = ['orderid', 'order_status', 'weight', 'symbol'];
   constructor(
     private _snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
@@ -36,6 +38,7 @@ export class AdminComponent {
   ) {}
 
   ngOnInit(): void {
+    this.getOrders();
     this.productFormBuild();
     this.categoryFormBuild();
     this.deleteCatformBuild();
@@ -76,6 +79,18 @@ export class AdminComponent {
       console.log(this.categorylist);
     });
   }
+  getOrders() {
+    this.Api.getOrders().subscribe((res) => {
+      this.OrderData = res;
+      if ((this.OrderData.order_status = 'cancelled')) {
+        this.redBG = true;
+      } else {
+        this.redBG = false;
+      }
+      console.log(this.OrderData);
+    });
+  }
+
   subData() {
     this.productForm.getRawValue();
     var data = {
@@ -107,14 +122,15 @@ export class AdminComponent {
     };
     this.Api.updateOrder(data).subscribe((res) => {
       console.log(res);
+      this._snackBar.open('Order Status Updated Successfully', '', {
+        duration: 500,
+        panelClass: ['succesColor'],
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+      });
+      this.orderstatusForm.reset();
+      this.ngOnInit();
     });
-    this._snackBar.open('Order Status Updated Successfully', '', {
-      duration: 500,
-      panelClass: ['succesColor'],
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
-    this.orderstatusForm.reset();
   }
   categoryData() {
     var data = {

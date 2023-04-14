@@ -10,3 +10,22 @@
 ::-webkit-scrollbar {
   display: none;
 }
+table.mat-table {
+  border-spacing: 0;
+  width: 100% !important;
+}
+.mat-tab-label {
+  background-color: beige;
+  min-width: 352px;
+
+}
+.tabBG{
+
+}
+
+.primary {
+  background-color: red;
+}
+.secondary {
+  background-color: rgb(129, 196, 129);
+}

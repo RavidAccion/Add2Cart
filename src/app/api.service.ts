@@ -38,6 +38,9 @@ export class ApiService {
   getProductsByCategory(Id: any) {
     return this.http.get(this.url + `/api/Product/getProducts/${Id}`);
   }
+  getOrders() {
+    return this.http.get(this.url + '/api/Order/get');
+  }
   createOrder(data: any) {
     return this.http.post(this.url + '/api/Order/create', data);
   }
